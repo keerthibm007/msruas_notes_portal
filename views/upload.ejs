@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <%- include("partials/header") %>
+  <div class="main-container">
+    <main class="upload">
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+        <label for="semester">Select Semester:</label>
+        <select name="semester" id="semester" required>
+          <option value="">Select Semester</option>
+          <option value="1st_sem">1st Semester</option>
+          <option value="2nd_sem">2nd Semester</option>
+          <option value="3rd_sem">3rd Semester</option>
+          <option value="4th_sem">4th Semester</option>
+          <option value="5th_sem">5th Semester</option>
+          <option value="6th_sem">6th Semester</option>
+        </select>
+
+        <label for="branch">Select Branch:</label>
+        <select name="branch" id="branch" required>
+          <option value="">Select Branch</option>
+          <!-- Options will be dynamically populated -->
+        </select>
+
+        <label for="subject">Select Subject:</label>
+        <select name="subject" id="subject" required>
+          <option value="">Select Subject</option>
+          <!-- Options will be dynamically populated -->
+        </select>
+
+        <label for="note">Select a file to upload:</label>
+        <input type="file" name="note" id="note" required>
+        <button class="upl" type="submit">Upload</button>
+      </form>
+    </main>
+  </div>
+  <%- include("partials/footer") %>
+  <script src="/js/script.js"></script>
+</body>
+</html>

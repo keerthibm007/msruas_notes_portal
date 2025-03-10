@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    
+    <%- include("partials/header") %>
+    <div class="notes-container">
+        <div class="notes-wrapper">
+            <div class="search-container">
+                <form action="/search" method="get" class="search">
+                    <input type="text" name="query" placeholder="Search for notes..." required>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+           
+            <ul>
+                <li><a href="/semester/1st_sem">1st Semester</a></li>
+                <li><a href="/semester/2nd_sem">2nd Semester</a></li>
+                <li><a href="/semester/3rd_sem">3rd Semester</a></li>
+                <li><a href="/semester/4th_sem">4th Semester</a></li>
+                <li><a href="/semester/5th_sem">5th Semester</a></li>
+                <li><a href="/semester/6th_sem">6th Semester</a></li>
+            </ul>
+        </div>
+    </div>    
+    <%- include("partials/footer") %>
+</body>
+</html>

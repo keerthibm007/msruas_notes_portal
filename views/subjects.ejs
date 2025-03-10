@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subjects</title>
+</head>
+<body>
+    <h2>Subjects</h2>
+    <ul>
+        <% Object.keys(subjects).forEach(subject => { %>
+            <li>
+                <a href="<%= subjects[subject] %>" target="_blank"><%= subject %></a>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>

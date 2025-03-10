@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include("partials/header") %>
+    <div class=" main-container">
+    <main class="upload">
+ 
+        <h3><%= branch %> - Semester <%= sem.replace('_', ' ') %> Notes</h3>
+        <a href="/semester/<%= sem %>" class="btns">Back to Branch</a>
+        <ul>
+            <% Object.keys(subjects).forEach(subject => { %> 
+                <li><a href="/semester/<%= sem %>/<%= branch %>/<%= subject %>"><%= subject %></a></li>
+            <% }); %>
+        </ul>
+        
+    </main>
+    </div>
+    <%- include("partials/footer") %>
+</body>
+</html>
+

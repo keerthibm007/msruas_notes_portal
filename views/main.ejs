@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title><%= title %></title>
+
+    <!--swiper cdn link-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    
+    <!--font awesome link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    
+    <!--css style link-->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+    <%- include("partials/header") %>
+   
+        <!-- home section starts -->
+        <section class="home">
+
+            <div class="swiper home-slider">
+
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide slide" style="background:url(/images/main/pexels-pavel-danilyuk-7944040.jpg) no-repeat">
+                        <div class="content">
+                            <span>Learn, Innovate, Succeed</span>
+                            <h3>Empower your education journey.</h3>
+                            <a href="/course" class="btns">view course</a>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide slide" style="background:url(/images/main/pexels-yankrukov-8199555.jpg) no-repeat">
+                        <div class="content">
+                            <span>Learn, Innovate, Succeed</span>
+                            <h3>Learn anytime, anywhere.</h3>
+                            <a href="/index" class="btns">view notes</a>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide slide" style="background:url(/images/main/grad.jpg) no-repeat">
+                        <div class="content">
+                            <span>Learn, Innovate, Succeed</span>
+                            <h3>Explore courses, expand horizons.</h3>
+                            <a href="/upload" class="btns">upload notes</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+
+            </div>
+
+        </section>
+
+    <!-- home sections ends -->
+    <!-- services section starts-->
+
+    <section class="services">
+        <h1 class="heading-title"> Branches </h1>
+          <div class="box-container">
+
+              <div class="box">
+                  <img src="/images/services/icons8-aeroplane-48.png" alt="">
+                  <h3>Aerospace</h3>
+              </div>
+
+              <div class="box">
+                  <img src="/images/services/icons8-computer-50.png" alt="">
+                  <h3>Computer</h3>
+              </div>
+
+              <div class="box">
+                  <img src="/images/services/icons8-electronics-50.png" alt="">
+                  <h3>Electronics</h3>
+              </div>
+
+              <div class="box">
+                  <img src="/images/services/icons8-electrical-64.png" alt="">
+                  <h3>Electrical</h3>
+              </div>
+
+              <div class="box">
+                  <img src="/images/services/icons8-mechanical-50.png" alt="">
+                  <h3>Mechnical</h3>
+              </div>
+
+              <div class="box">
+                  <img src="/images/services/icons8-automotive-50.png" alt="">
+                  <h3>Automotive</h3>
+              </div>
+          </div>
+    </section>
+    <!-- services section ends-->
+    
+    <!-- home about section starts here -->
+    <section class="home-about">
+        <div class="image">
+            <img src="/images/main/multi.jpeg" alt="">
+        </div>
+        <div class="content">
+            <h3>Overview</h3>
+            <p>MSRUAS brings together esteemed institutions from the Ramaiah Group, adapting to the needs of a changing world. It has established itself as a university that integrates academia, industry, and society, nurturing the innovators of tomorrow. Aspiring to be Asia's top choice for student-centric professional education, RUAS emphasizes applied research and upholds high academic standards. Committed to knowledge creation, the university fosters creativity and excellence in teaching, inspiring critical thinking and lifelong learning while addressing the technical and economic challenges of society.</p>
+        </div>
+    </section>
+    
+    <!-- home about section ends here-->
+
+    <%- include("partials/footer") %>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html>
