@@ -268,7 +268,161 @@ document.addEventListener("DOMContentLoaded", () => {
         "Fluid Power Systems for Robots",
         "Mechanical Dissection"
       ]
-    }
+    },
+      
+    "5th_sem": {
+    "Aerospace": [
+      "Aerospace Structures",
+      "Control System",
+      "Theory of Machines and Mechanisms",
+      "Aerodynamics-2",
+      "Aerospace Propulsion-1",
+      "Artificial Intelligence and Machine Learning"
+    ],
+    "AIML": [
+      "Microprocessors and Architecture",
+      "Machine Learning-2",
+      "Data Mining",
+      "Database Systems",
+      "Computer Networks"
+    ],
+    "Automotive": [
+      "Propulsion Systems for Electric and Hybrid Vehicle",
+      "Theory of Machines and Mechanisms",
+      "Design of Automotive Components",
+      "Automotive Noise, Vibration and Harshness",
+      "Artificial Intelligence and Machine Learning"
+    ],
+    "Computer_Science": [
+      "Data Mining",
+      "Probability and Statistics",
+      "Database Systems",
+      "Computer Networks",
+      "Operating Systems",
+      "Compilers"
+    ],
+    "Electronics": [
+      "Transmission and Distribution",
+      "Digital Signal Processing",
+      "Electrical Machine Design",
+      "Control Systems",
+      "Engineering Economics"
+    ],
+    "Electrical_and_Electronics": [
+      "Digital Signal Processing",
+      "Electrical Machine Design",
+      "Control Systems",
+      "Transmission and Distribution",
+      "High Voltage",
+      "Engineering Economics"
+    ],
+    "Information_science": [
+      "Data Mining",
+      "Probability and Statistics",
+      "Database Systems",
+      "Computer Networks",
+      "Operating Systems",
+      "Microprocessors and Architecture",
+      "Bio-informatics"
+    ],
+    "Mathematics_and_Computing": [
+      "Optimization Techniques",
+      "Partial Differential Equations",
+      "Applications of Probability and statistics in Finance",
+      "Computer Networks",
+      "Microprocessors and Architecture",
+      "Principles of Artificial Intelligence"
+    ],
+    "Mechanical": [
+      "Applied Thermodynamics",
+      "Dynamics of Machinery",
+      "Design of Machine Elements-1",
+      "Automation in Manufacturing"
+    ],
+    "Robotics": [
+      "Designs of Machine Elements",
+      "Embedded Processor and Controllers",
+      "Computer Vision",
+      "Control System"
+    ]
+  },
+  "6th_sem": {
+    "Aerospace": [
+      "Aerospace Propulsion-2",
+      "Finite Element Analysis",
+      "Aircraft Performance, Stability and control",
+      "Computational Fluid Dynamics",
+      "Engineering Economics"
+    ],
+    "AIML": [
+      "Graph Theory and Optimization",
+      "Computer Vision",
+      "Natural Language Processing",
+      "Deep Learning and Applications",
+      "Pattern Recognition"
+    ],
+    "Automotive": [
+      "Vehicle Body Engineering and Crashworthiness",
+      "Finite Element Analysis",
+      "Vehicle Dynamics and Handling",
+      "Computational Intelligence in Automotive Applications",
+      "Engineering Economics"
+    ],
+    "Civil": [
+      "Geotechnical Engineering-2",
+      "Design of Steel Element",
+      "Estimation-costing and Engineering Economics",
+      "DSM & Finite Element Analysis",
+      "Design & Drawing of Transportation & Irrigation Structures",
+      "Design & Drawing of Geotechnical & Environmental Structures",
+      "Design and Drawing of Steel Structures"
+    ],
+    "Computer_science": [
+      "Information security and Protection",
+      "Web Architecture and Application Development",
+      "Principles of Artificial Intelligence",
+      "Computer Graphics"
+    ],
+    "Electrical_and_Electronics": [
+      "Design and Computer Aided of Electrical Machine",
+      "Switchgear and Protection",
+      "Power Electronics and Drives",
+      "Power System Analysis"
+    ],
+    "Electronics_and_Communication": [
+      "Information Theory",
+      "Digital Communication",
+      "Antenna and Propagation",
+      "Computer Networks"
+    ],
+    "Information_science": [
+      "Information security and Protection",
+      "Web Architecture and Application Development",
+      "Principles of Artificial Intelligence",
+      "Data Processing"
+    ],
+    "Mathematics_and_Computing": [
+      "Graph Theory and Optimization",
+      "Information security and Protection",
+      "Quantum Computing",
+      "Machine Learning-1",
+      "Parallel Algorithms for Scientific Computing"
+    ],
+    "Mechanical": [
+      "Heat and Mass Transfer",
+      "Design of Machine Elements-2",
+      "Industrial Engineering and Management",
+      "Engineering Economics and Cost Estimation for Mechanical"
+    ],
+    "Robotics": [
+      "Robotic Programming and Simulation",
+      "Robotic System Design",
+      "Applied Control Systems",
+      "Robot Motion Planning",
+      "Digital Image Processing",
+      "Engineering Economics and Cost Estimation"
+    ]
+  }
   };
 
   // Listen for changes on the semester dropdown

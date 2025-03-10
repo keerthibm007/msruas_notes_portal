@@ -1,64 +1,81 @@
 const express = require("express");
 const path = require("path");
-const app = express();
-const http = require('http');
-const fs = require('fs');
+const fs = require("fs");
 const multer = require("multer");
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-const PORT = 3000;
+// ------------------------
+// Middleware & View Engine
+// ------------------------
 
-// Static files middleware
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static('public'));
+// Parse form data and JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Routes
-app.get("/", (req, res) => res.render("main", { title: "Home - College Notes" })); // Home Page
-app.get("/index", (req, res) => res.render("index", { title: "Notes - College Notes" })); // Notes Page
-app.get("/upload", (req, res) => res.render("upload", { title: "Upload - College Notes" })); // Upload Page
-app.get("/todo", (req, res) => res.render("todo", { title: "To-Do List - College Notes" })); // To-Do List Page
-app.get("/course", (req, res) => res.render("course", { title: "Courses - College Notes" })); // Courses Page
+// Serve static files from the "public" folder
+app.use(express.static(path.join(__dirname, "public")));
 
+// Serve uploaded files from "uploads" folder
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// Set EJS as the template engine
+// Set EJS as the template engine and define views folder
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-app.use(express.static(path.join(__dirname, 'public')));
-// Search route
-app.get('/search', (req, res) => {
+
+// ------------------------
+// Routes
+// ------------------------
+
+// Home Page (renders main.ejs)
+app.get("/", (req, res) => {
+  res.render("main", { title: "Home - College Notes" });
+});
+
+// Notes Page (renders index.ejs)
+app.get("/index", (req, res) => {
+  res.render("index", { title: "Notes - College Notes" });
+});
+
+// Upload Page
+app.get("/upload", (req, res) => {
+  res.render("upload", { title: "Upload - College Notes" });
+});
+
+// To-Do List Page
+app.get("/todo", (req, res) => {
+  res.render("todo", { title: "To-Do List - College Notes" });
+});
+
+// Courses Page
+app.get("/course", (req, res) => {
+  res.render("course", { title: "Courses - College Notes" });
+});
+
+// Search Route
+app.get("/search", (req, res) => {
   const query = req.query.query.toLowerCase();
   let results = [];
 
   // Loop through the data to find matches
   for (let sem in data) {
-      for (let branch in data[sem]) {
-          for (let subject in data[sem][branch]) {
-              if (subject.toLowerCase().includes(query) || branch.toLowerCase().includes(query)) {
-                  results.push({
-                      sem,
-                      branch,
-                      subject,
-                      link: data[sem][branch][subject]
-                  });
-              }
-          }
+    for (let branch in data[sem]) {
+      for (let subject in data[sem][branch]) {
+        if (subject.toLowerCase().includes(query) || branch.toLowerCase().includes(query)) {
+          results.push({
+            sem,
+            branch,
+            subject,
+            link: data[sem][branch][subject]
+          });
+        }
       }
+    }
   }
-
-  // Render search results
-  res.render('search_results', { query, results });
-});
-
-//search - index.ejs
-app.get("/", (req, res) => {
-  res.render("main"); // Rendering main.ejs
+  res.render("search_results", { query, results, title: "Search Results" });
 });
 
 
-app.get("/index", (req, res) => {
-  res.render("index"); // If you still use index.ejs somewhere
-});
 // Semester and subject data
 const data = {
     "1st_sem": {
@@ -445,79 +462,57 @@ const data = {
   
 };
   
-// courses page
-app.get('/course', (req, res) => {
-  res.render('course'); // Render courses.ejs
-});
-
-// Homepage route
-app.get("/", (req, res) => {
-  res.render("index", { title: "College Notes Portal" });
-});
-
-// Semester route
+// Semester Route (Lists branches for a semester)
 app.get("/semester/:sem", (req, res) => {
   const sem = req.params.sem;
   const branches = data[sem] ? Object.keys(data[sem]) : null;
   if (!branches) return res.status(404).send("Semester not found");
 
-  res.render("semester", { sem, branches, title: `Semester ${sem} Notes` });
+  res.render("semester", { sem, branches, title: `Semester ${sem.replace('_', ' ')} Notes` });
 });
 
-// Branch route
+// Branch Route (Lists subjects for a branch in a semester)
 app.get("/semester/:sem/:branch", (req, res) => {
   const sem = req.params.sem;
   const branch = req.params.branch;
-  const subjects = data[sem][branch]; // This should be an object like { "Subject 1": "file1.pdf", "Subject 2": "file2.pdf" }
-  
+  const subjects = data[sem] && data[sem][branch];
   if (!subjects) return res.status(404).send("Branch not found");
 
-  res.render("branch", { sem, branch, subjects, title: `${branch} Semester ${sem} Notes` });
+  res.render("branch", { sem, branch, subjects, title: `${branch} - Semester ${sem.replace('_', ' ')} Notes` });
 });
-  
-// Assuming your data object holds semester data
-// and that 'index' is equivalent to the semester identifier
 
+// Index Route for semester if needed (alternative to /semester/:sem)
 app.get("/index/:index", (req, res) => {
   const sem = req.params.index;
   const branches = data[sem] ? Object.keys(data[sem]) : null;
   if (!branches) return res.status(404).send("Semester not found");
 
-  // Render the semester page with the corresponding data
-  res.render("semester", { sem, branches, title: `Semester ${sem} Notes` });
+  res.render("semester", { sem, branches, title: `Semester ${sem.replace('_', ' ')} Notes` });
 });
 
-// Subject route
+// Subject Route (Redirects to the subject link)
 app.get("/semester/:sem/:branch/:subject", (req, res) => {
-  const sem = req.params.sem;
-  const branch = req.params.branch;
-  const subject = req.params.subject;
-
+  const { sem, branch, subject } = req.params;
   const subjectLink = data[sem] && data[sem][branch] && data[sem][branch][subject];
   if (!subjectLink) return res.status(404).send("Subject notes not found");
 
-  // Redirect to the Google Drive link
   res.redirect(subjectLink);
 });
 
-
+// Additional subjects route (if applicable)
 app.get('/subjects/:semester/:cycle', (req, res) => {
   const { semester, cycle } = req.params;
   const subjects = data[semester]?.[cycle];
-
   if (subjects) {
-    res.render('subjects', { subjects });
+    res.render('subjects', { subjects, title: "Subjects" });
   } else {
     res.status(404).send('Subjects not found');
   }
 });
-  
-// Serve uploaded files correctly
-// Serve static files from the "uploads" folder
-// Parse form data (if not already configured)
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// ------------------------
+// Multer Configuration for Uploads
+// ------------------------
 
 // Define allowed MIME types and file extensions
 const allowedMimeTypes = [
@@ -538,19 +533,17 @@ if (!fs.existsSync(tempDir)) {
 // Define multer storage configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    // Temporarily store files in "temp_uploads"
-    cb(null, "temp_uploads");
+    cb(null, tempDir);
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
   }
 });
 
-// Define file filter function using allowed MIME types and extensions
+// Define file filter function
 const fileFilter = (req, file, cb) => {
   const extname = allowedExtensions.test(path.extname(file.originalname).toLowerCase());
   const mimetypeAllowed = allowedMimeTypes.includes(file.mimetype);
-  
   if (extname && mimetypeAllowed) {
     return cb(null, true);
   } else {
@@ -558,7 +551,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// Initialize multer with defined storage and file filter
+// Initialize multer
 const upload = multer({ 
   storage: storage,
   fileFilter: fileFilter
@@ -575,29 +568,22 @@ app.post("/upload", upload.single("note"), (req, res) => {
     return res.send("Error: Missing semester, branch, or subject.");
   }
 
-  // Define the target directory based on semester, branch, and subject
   const targetDir = path.join(__dirname, "uploads", semester, branch, subject);
-
-  // Create the directory if it doesn't exist
   fs.mkdirSync(targetDir, { recursive: true });
-
-  // Define the target file path
   const targetPath = path.join(targetDir, req.file.filename);
 
-  // Move the file from temp_uploads to the target directory
   fs.rename(req.file.path, targetPath, (err) => {
     if (err) {
       return res.send("Error moving file.");
     }
-
-    // Return a relative URL for viewing the file
     const fileUrl = `/uploads/${encodeURIComponent(semester)}/${encodeURIComponent(branch)}/${encodeURIComponent(subject)}/${encodeURIComponent(req.file.filename)}`;
-    
     res.send(`File uploaded successfully: <a href="${fileUrl}" target="_blank">View File</a>`);
   });
 });
 
-// Start the server
+// ------------------------
+// Start the Server
+// ------------------------
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
