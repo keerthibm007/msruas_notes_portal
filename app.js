@@ -5,6 +5,9 @@ const multer = require("multer");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Ensure your data is defined or imported. Example:
+// const data = require('./data'); // Make sure data is available for your routes
+
 // ------------------------
 // Middleware & View Engine
 // ------------------------
@@ -13,13 +16,11 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Serve static files from the "public" folder
+// Serve static files from "public" and "uploads" folders
 app.use(express.static(path.join(__dirname, "public")));
-
-// Serve uploaded files from "uploads" folder
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// Set EJS as the template engine and define views folder
+// Set EJS as the template engine and define the views folder
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
@@ -61,7 +62,10 @@ app.get("/search", (req, res) => {
   for (let sem in data) {
     for (let branch in data[sem]) {
       for (let subject in data[sem][branch]) {
-        if (subject.toLowerCase().includes(query) || branch.toLowerCase().includes(query)) {
+        if (
+          subject.toLowerCase().includes(query) ||
+          branch.toLowerCase().includes(query)
+        ) {
           results.push({
             sem,
             branch,
@@ -72,9 +76,9 @@ app.get("/search", (req, res) => {
       }
     }
   }
+  
   res.render("search_results", { query, results, title: "Search Results" });
 });
-
 
 // Semester and subject data
 const data = {
@@ -461,14 +465,18 @@ const data = {
     
   
 };
-  
+
 // Semester Route (Lists branches for a semester)
 app.get("/semester/:sem", (req, res) => {
   const sem = req.params.sem;
   const branches = data[sem] ? Object.keys(data[sem]) : null;
   if (!branches) return res.status(404).send("Semester not found");
 
-  res.render("semester", { sem, branches, title: `Semester ${sem.replace('_', ' ')} Notes` });
+  res.render("semester", {
+    sem,
+    branches,
+    title: `Semester ${sem.replace('_', ' ')} Notes`
+  });
 });
 
 // Branch Route (Lists subjects for a branch in a semester)
@@ -478,16 +486,25 @@ app.get("/semester/:sem/:branch", (req, res) => {
   const subjects = data[sem] && data[sem][branch];
   if (!subjects) return res.status(404).send("Branch not found");
 
-  res.render("branch", { sem, branch, subjects, title: `${branch} - Semester ${sem.replace('_', ' ')} Notes` });
+  res.render("branch", {
+    sem,
+    branch,
+    subjects,
+    title: `${branch} - Semester ${sem.replace('_', ' ')} Notes`
+  });
 });
 
-// Index Route for semester if needed (alternative to /semester/:sem)
+// Alternative Index Route for a semester (if needed)
 app.get("/index/:index", (req, res) => {
   const sem = req.params.index;
   const branches = data[sem] ? Object.keys(data[sem]) : null;
   if (!branches) return res.status(404).send("Semester not found");
 
-  res.render("semester", { sem, branches, title: `Semester ${sem.replace('_', ' ')} Notes` });
+  res.render("semester", {
+    sem,
+    branches,
+    title: `Semester ${sem.replace('_', ' ')} Notes`
+  });
 });
 
 // Subject Route (Redirects to the subject link)
@@ -587,3 +604,4 @@ app.post("/upload", upload.single("note"), (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+  
