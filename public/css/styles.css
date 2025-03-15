@@ -131,76 +131,76 @@ section{
 /* slides */
 .home{
     padding: 0;  
-  }
+}
   
-  .home .slide{
-      text-align: center;
-      padding: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-size: cover !important;
-      background-position: center !important;
-      min-height: 60rem;
-  }
-  
-  .home .slide .content{
-      width: 85rem;
-      display: none;
-  }
-  
-  .home .swiper-slide-active .content{
-      display: inline-block;
-  }
-  
-  .home .slide .content span{
-      display: block;
-      font-size: 2.2rem;
-      color: var(--light-white);
-      padding-bottom: 1rem;
-      animation: fadeIn .2s linear backwards .2s;
-  }
-  
-  .home .slide .content h3{
-      font-size: 5vw;
-      color: var(--white);
-      text-transform: uppercase;
-      line-height: 1;
-      text-shadow: var(--text-shadow);
-      padding: 1rem 0;
-      animation: fadeIn .2s linear backwards .4s;
-  }
-  
-  .home .slide .content .btn{
-      animation: fadeIn .2s linear backwards .6s;
-  }
-  
-  .home .swiper-button-next,
-  .home .swiper-button-prev{
-      top: inherit;
-      bottom: inherit;
-      bottom: 0;
-      right: 0;
-      height: 7rem;
-      width: 7rem;
-      background: var(--white);
-      color: var(--black);
-  }
-  
-  .home .swiper-button-next:hover,
-  .home .swiper-button-prev:hover{
-      background: var(--main-color);
-      color: var(--white);
-  }
-  
-  .home .swiper-button-next::after,
-  .home .swiper-button-prev::after{
-      font-size: 2rem;
-  }
-  
-  .home.swiper-button-prev{
-      right: 7rem;
-  }
+.home .slide{
+    text-align: center;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover !important;
+    background-position: center !important;
+    min-height: 60rem;
+}
+
+.home .slide .content{
+    width: 85rem;
+    display: none;
+}
+
+.home .swiper-slide-active .content{
+    display: inline-block;
+}
+
+.home .slide .content span{
+    display: block;
+    font-size: 2.2rem;
+    color: var(--light-white);
+    padding-bottom: 1rem;
+    animation: fadeIn .2s linear backwards .2s;
+}
+
+.home .slide .content h3{
+    font-size: 5vw;
+    color: var(--white);
+    text-transform: uppercase;
+    line-height: 1;
+    text-shadow: var(--text-shadow);
+    padding: 1rem 0;
+    animation: fadeIn .2s linear backwards .4s;
+}
+
+.home .slide .content .btn{
+    animation: fadeIn .2s linear backwards .6s;
+}
+
+.home .swiper-button-next,
+.home .swiper-button-prev{
+    top: inherit;
+    bottom: inherit;
+    bottom: 0;
+    right: 0;
+    height: 7rem;
+    width: 7rem;
+    background: var(--white);
+    color: var(--black);
+}
+
+.home .swiper-button-next:hover,
+.home .swiper-button-prev:hover{
+    background: var(--main-color);
+    color: var(--white);
+}
+
+.home .swiper-button-next::after,
+.home .swiper-button-prev::after{
+    font-size: 2rem;
+}
+
+.home.swiper-button-prev{
+    right: 7rem;
+}
 /* home about */
 .home-about{
     display: flex;
@@ -233,6 +233,37 @@ section{
     padding: 1rem 0;
     color: var(--black);
 }
+@media (max-width: 600px){
+    @media (max-width: 600px) {
+        .home-about {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Use min-height instead of height */
+            flex-direction: column; /* Stack image and content */
+            text-align: center;
+            padding: 2rem;
+        }
+    
+        .home-about .image {
+            flex: 0.7 0.7 25rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .home-about .image img {
+            width: 100%;
+            max-width: 100%;
+        }
+    
+        .home-about .content {
+            flex: 1 1 auto;
+            padding: 2rem;
+        }
+    }
+    
+}
 
 /* services */
 .services .box-container{
@@ -262,268 +293,117 @@ section{
     padding-top: 1rem;
 }
 
-/* todo list */
+/* Main container for the entire todo list page */
 .main-container {
     display: flex;
-    width: 100vw;
-    height: 100vh;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    background-color: var(--light-bg);
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--light-bg); 
+    padding: 20px;
 }
-  
+
+/* Wrapper for the todo content */
 .ta-wrapper {
-background: rgb(25, 25, 57);
-color: white;
-padding: 20px;
-border-radius: 4px;
-box-shadow: 0 0 7px 7px rgb(0 0 0 / 20%);
-min-height: 500px;
-}
-
-.heading h1 {
-text-align: center;
-color: white;
-font-size: 40px;
-margin-bottom: 10px;
-}
-
-.input-wrapper {
-margin-bottom: 20px;
-}
-.input-wrapper input {
-outline: none;
-    border: 0;
-    background: rgb(66, 66, 95);
-    padding: 10px;
-    color: white;
-    width: 500px;
-}
-.input-wrapper button {
-background: var(--main-color);
-    color: white;
-    border: 0;
-    padding: 10px;
-    font-weight: bold;
-    border-radius: 2px;
-    cursor: pointer;
-}
-.todo-item {
-display: flex;
-align-items: center;
-justify-content: space-between;
-margin-bottom: 10px;
-border-bottom: 1px solid rgba(0,0,0,0.2);
-padding-bottom: 10px;
-}
-.todo-item input {
-background: transparent;
-border: navajowhite;
-color: white;
-outline: none;
-}
-.todo-item i{
-color: var(--main-color);
-background: transparent;
-border: 1px solid;
-border-radius: 50%;
-padding: 6px;
-cursor: pointer;
-transition: 0.2s ease-in-out;
-margin-left: 5px;
-}
-.todo-item button:hover {
-color: white;
-}
-.done {
-text-decoration: line-through;
-}
-.fa-x {
-padding: 6px 8px !important;
-}
-
-
-/* Home Package Section */
-.home-package, .package {
-    background-color: var(--light-bg);
-}
-
-.home-package .box-container, 
-.package .box-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-    gap: 2rem;
-}
-
-/* Box Styling */
-.home-package .box-container .box, 
-.package .box-container .box {
-    border: var(--border);
-    box-shadow: var(--box-shadow);
-    background: var(--white); 
-}
-
-
-/* Image Styling */
-.home-package .box-container .box .image, 
-.package .box-container .box .image {
-    height: 25rem;
-    overflow: hidden;
-}
-
-.home-package .box-container .box .image img, 
-.package .box-container .box .image img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Hover Effect */
-.package .box-container .box:hover .image img {
-    transform: scale(1.1);
-}
-
-/* Content Styling */
-.home-package .box-container .box .content, 
-.package .box-container .box .content {
-    padding: 2rem;
-    text-align: center;
-}
-
-.home-package .box-container .box .content h3, 
-.package .box-container .box .content h3 {
-    font-size: 2rem;
-    color: var(--black);
-}
-
-.home-package .box-container .box .content p, 
-.package .box-container .box .content p {
-    font-size: 1.5rem;
-    color: var(--light-black);
-    line-height: 2;
-    padding: 1rem 0;
-}
-
-/* upload page */
-/* General Styling */
-.main-container {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background-color: var(--light-bg);
-}
-
-/* Upload Form Container */
-.upload {
     background: rgb(25, 25, 57);
-    color: white;
-    padding: 30px;
+    color: #fff;
+    padding: 40px; 
     border-radius: 10px;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
-    min-width: 500px;
-    width: 90%;
-    max-width: 650px;
+    width: 100%;
+    max-width: 800px; 
+    min-height: 450px; 
 }
 
-/* Form Elements */
-.upload form {
+/* Input Wrapper */
+.input-wrapper {
+    width: 100%;
+    margin-bottom: 30px;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex-wrap: wrap; 
+    gap: 10px; 
 }
 
-.upload label {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-/* Custom Dropdown Styling */
-.upload select {
-    width: 100%;
-    padding: 14px;
-    font-size: 1.2rem;
+/* Input and Button Styles */
+.input-wrapper input {
+    flex: 1; 
+    min-width: 250px; 
+    padding: 14px; 
+    font-size: 1.3rem; 
     border: none;
     border-radius: 6px;
-    background: rgb(66, 66, 95);  /* Light Transparent Background */
+    background: rgba(66, 66, 95, 0.7);
     color: white;
     outline: none;
-    cursor: pointer;
-    appearance: none; /* Removes default arrow */
 }
 
-/* Dropdown Arrow Customization */
-.upload select::-ms-expand {
-    display: none; /* Hides default arrow in Internet Explorer */
-}
-
-.upload select:focus {
-    background: var(--light-black); /* Slightly lighter background on focus */
-}
-
-/* Style for Select Dropdown Options */
-.upload select option {
-    background: rgb(66, 66, 95);  /* Darker background */
-    color: var(--white);
-}
-
-/* File Upload Input */
-.upload input[type="file"] {
-    width: 100%;
-    padding: 14px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 6px;
-    background: rgb(66, 66, 95);
-    color: white;
-    outline: none;
-    cursor: pointer;
-}
-
-/* Upload Button */
-.upl {
+.input-wrapper button {
     background: var(--main-color);
     color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 14px;
+    font-size: 1.3rem; 
+    padding: 14px; 
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: 0.3s ease-in-out;
+    transition: background 0.3s ease-in-out;
 }
 
-.upl:hover {
-    background: #992361;
-    transform: scale(1.05);
+/* To-Do Item Styling */
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+    word-break: break-word;
+    font-size: 1.1rem;
 }
 
-/* Responsive Design */
+.todo-item input {
+    background: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    flex-grow: 1;
+}
+
+.todo-item i {
+    color: var(--main-color);
+    background: transparent;
+    border: 1px solid;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    margin-left: 8px;
+}
+
+.todo-item button:hover {
+    color: white;
+}
+
+.done {
+    text-decoration: line-through;
+}
+
+.fa-x {
+    padding: 8px 10px !important;
+}
+
+/* Responsive Media Queries */
 @media (max-width: 600px) {
-    .upload {
-        max-width: 90%;
-        min-width: auto;
-        padding: 25px;
+    .ta-wrapper {
+        padding: 25px; /* Adjust padding for smaller screens */
     }
-
-    .upload label {
-        font-size: 1.2rem;
+    .input-wrapper input {
+        font-size: 1.3rem; /* Smaller font size for input */
+        padding: 10px; /* Adjust padding */
     }
-
-    .upload select,
-    .upload input[type="file"] {
-        font-size: 1.1rem;
-        padding: 12px;
-    }
-
-    .upl {
-        font-size: 1.2rem;
-        padding: 12px;
+    .input-wrapper button {
+        font-size: 1.3rem; /* Smaller font size for button */
+        padding: 10px; /* Adjust padding */
     }
 }
 
@@ -625,12 +505,12 @@ h4{
 /* Responsive Styles */
 @media (max-width: 600px) {
     .search input[type="text"] {
-        font-size: 1rem;
+        font-size: 1.3rem;
         padding: 10px;
     }
     
     .search button {
-        font-size: 1rem;
+        font-size: 1.3rem;
         padding: 10px;
     }
     
@@ -639,9 +519,190 @@ h4{
     }
     
     ul li a {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         padding: 10px;
     }
+}
+/* upload page */
+/* General Styling */
+.main-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--light-bg);
+}
+
+/* Upload Form Container */
+.upload {
+    background: rgb(25, 25, 57);
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+    min-width: 500px;
+    width: 90%;
+    max-width: 650px;
+}
+
+/* Form Elements */
+.upload form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.upload label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* Custom Dropdown Styling */
+.upload select {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 6px;
+    background: rgb(66, 66, 95);  
+    color: white;
+    outline: none;
+    cursor: pointer;
+    appearance: none; 
+}
+
+/* Dropdown Arrow Customization */
+.upload select::-ms-expand {
+    display: none; 
+}
+
+.upload select:focus {
+    background: var(--light-black);
+}
+
+/* Style for Select Dropdown Options */
+.upload select option {
+    background: rgb(66, 66, 95);  
+    color: var(--white);
+}
+
+/* File Upload Input */
+.upload input[type="file"] {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 6px;
+    background: rgb(66, 66, 95);
+    color: white;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Upload Button */
+.upl {
+    background: var(--main-color);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.upl:hover {
+    background: #992361;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .upload {
+        max-width: 90%;
+        min-width: auto;
+        padding: 20px;
+    }
+
+    .upload label {
+        font-size: 1.5rem;
+    }
+
+    .upload select,
+    .upload input[type="file"] {
+        font-size: 1.5rem;
+        padding: 10px;
+    }
+
+    .upl {
+        font-size: 1.3rem;
+        padding: 12px;
+    }
+}
+/* Home Package Section */
+.home-package, .package {
+    background-color: var(--light-bg);
+}
+
+.home-package .box-container, 
+.package .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 2rem;
+}
+
+/* Box Styling */
+.home-package .box-container .box, 
+.package .box-container .box {
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    background: var(--white); 
+}
+
+
+/* Image Styling */
+.home-package .box-container .box .image, 
+.package .box-container .box .image {
+    height: 25rem;
+    overflow: hidden;
+}
+
+.home-package .box-container .box .image img, 
+.package .box-container .box .image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.package .box-container .box:hover .image img {
+    transform: scale(1.1);
+}
+
+/* Content Styling */
+.home-package .box-container .box .content, 
+.package .box-container .box .content {
+    padding: 2rem;
+    text-align: center;
+}
+
+.home-package .box-container .box .content h3, 
+.package .box-container .box .content h3 {
+    font-size: 2rem;
+    color: var(--black);
+}
+
+.home-package .box-container .box .content p, 
+.package .box-container .box .content p {
+    font-size: 1.5rem;
+    color: var(--light-black);
+    line-height: 2;
+    padding: 1rem 0;
 }
 
 
