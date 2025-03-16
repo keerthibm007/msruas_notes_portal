@@ -746,6 +746,13 @@ app.post("/upload", upload.single("note"), (req, res) => {
 // ------------------------
 // Start the Server
 // ------------------------
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {  // Bind to 0.0.0.0
+  console.log(`Server is running on port ${PORT}`);
 });
+const server = app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+// Increase timeout settings
+server.keepAliveTimeout = 120000;
+server.headersTimeout = 120000;
