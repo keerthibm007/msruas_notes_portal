@@ -8,19 +8,29 @@
 </head>
 <body>
     <%- include("partials/header") %>
-    <div class=" main-container">
+    <div class=" main-container semester-container">
     <main class="upload">
-    
-        <h3>Semester <%= sem.replace('_', ' ') %> Notes</h3>
-        <a href="/index" class="btns">Back to Semester</a>
+        
+            <div class="semester-wrapper">
+                <h1>Select Your Branch</h1>
 
-        <ul>
-            <% branches.forEach(branch => { %>
-                <li><a href="/semester/<%= sem %>/<%= branch %>"><%= branch %></a></li>
-            <% }); %>
-        </ul>
+                <div class="search-container">
+                    <form action="/search" method="get" class="search">
+                        <input type="text" name="query" placeholder="Search for notes..." required>
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+
+                <ul>
+                <% branches.forEach(branch => { %>
+                <li><a href="/branch/<%= branch %>"><%= branch.replace(/_/g, ' ') %></a></li>
+                <% }) %>
+                </ul>
+            
+    </div>
     </main>
     </div>
     <%- include("partials/footer") %>
+    <script src="/js/script.js"></script>
 </body>
 </html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title><%= title %></title>
+
+    <!--swiper cdn link-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    
+    <!--font awesome link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    
+    <!--css style link-->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+   
+    <%- include("partials/header") %>
+    
+    <!-- package section starts -->
+
+    <section class="package">
+
+        <h1 class="heading-title">Free Courses</h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <div class="image">
+                    <img src="/images/coursera.png" alt="">
+                </div>
+                <div class="content">
+                    <h3>Coursera</h3>
+                    <p>Offers robotics courses from top universities with free auditing options, covering AI, automation, and control systems.</p>
+                    <a href="https://www.coursera.org/courses?query=robotics" class="btn">view page</a>
+                </div>
+            </div>
+
+            <div class="box">
+                    <div class="image">
+                        <img src="/images/classcentral.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Class central</h3>
+                        <p>Aggregates free robotics courses from various universities and online learning platforms.</p>
+                        <a href="https://www.classcentral.com/subject/robotics" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/udemy.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Udemy</h3>
+                        <p>Provides some free beginner-friendly robotics courses on Arduino, programming, and automation.</p>
+                        <a href="https://www.udemy.com/topic/robotics/free/?srsltid=AfmBOorl4FIRSI8tygbOXe-yLlbab-qQPtIwLlRczdNrXSOsgFYk6N2j" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/future_learn.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Future learn</h3>
+                        <p> Hosts free robotics courses covering AI, industrial automation, and mechatronics concepts.</p>
+                        <a href="https://www.futurelearn.com/subjects/it-and-computer-science-courses/ai-and-robotics" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/alison.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Alison</h3>
+                        <p>Offers free robotics courses on programming, electronics, and automation with certification options.</p>
+                        <a href="https://alison.com/tag/robotics" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/greatlearning.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Great learning</h3>
+                        <p> Provides free introductory courses on robotics, AI, and embedded systems.</p>
+                        <a href="https://www.mygreatlearning.com/academy/learn-for-free/courses/robotics-and-ai" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/edx.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>EDX</h3>
+                        <p> Hosts robotics courses from universities like MIT and Harvard, with free access to course content.</p>
+                        <a href="https://www.edx.org/learn/robotics" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/rasberry.avif" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Raspberrypi</h3>
+                        <p>Offers free resources and projects to learn robotics using Raspberry Pi and Python.</p>
+                        <a href="https://www.raspberrypi.org/courses/electronics-and-robotics" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/mit_ocw.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>OCW MIT EDU</h3>
+                        <p>Provides free MIT course materials on robotics, control systems, and AI integration.</p>
+                        <a href="https://ocw.mit.edu/search/?q=robotics" class="btn">view page</a>
+                    </div>
+                </div>
+
+        </div>
+
+        
+    </section>
+
+    <!-- package section ends -->
+    <%- include("partials/footer") %>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!--javascript link-->
+    <script src="/js/script.js"></script>
+</body>
+</html>

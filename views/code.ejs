@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title><%= title %></title>
+
+    <!--swiper cdn link-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    
+    <!--font awesome link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    
+    <!--css style link-->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+   
+    <%- include("partials/header") %>
+    
+    <!-- package section starts -->
+
+    <section class="package">
+
+        <h1 class="heading-title">Free Courses</h1>
+
+        <div class="box-container">
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/cs50.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>CS50’s</h3>
+                        <p>Harvard's renowned introductory computer science course, covering programming fundamentals and real-world problem-solving.</p>
+                        <a href="https://pll.harvard.edu/course/cs50-introduction-computer-science" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/greatlearning.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Great Learning</h3>
+                        <p>Offers free beginner-friendly courses in programming, data science, AI, and more with certification.</p>
+                        <a href="https://www.mygreatlearning.com/coding/free-courses" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/coursera.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Coursera</h3>
+                        <p>Provides university-level programming courses from top institutions, with free auditing options.</p>
+                        <a href="https://www.coursera.org/courses?query=coding" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/codeacdemy.webp" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Codecademy</h3>
+                        <p> Interactive coding platform with hands-on exercises for learning programming languages and frameworks.</p>
+                        <a href="https://www.codecademy.com/" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/edx.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>OCW MIT EDU</h3>
+                        <p>Free access to MIT’s computer science and programming course materials.</p>
+                        <a href="https://ocw.mit.edu/collections/introductory-programming/" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/freecodecamp.webp" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Freecodecamp</h3>
+                        <p>A nonprofit with extensive coding tutorials, projects, and certifications in web development, data science, and more.</p>
+                        <a href="https://www.freecodecamp.org/" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/infosys.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Infyspringboard</h3>
+                        <p> Offers free tech and programming courses with industry-relevant content.</p>
+                        <a href="https://infyspringboard.onwingspan.com/web/en/login" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/future_learn.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Future Learn</h3>
+                        <p> Provides free and paid courses from universities and industry experts, covering programming and tech skills.</p>
+                        <a href="https://www.futurelearn.com/subjects/it-and-computer-science-courses/coding-programming" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/alison.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Alison</h3>
+                        <p>Offers free online programming courses with certificates for various programming languages and IT skills.</p>
+                        <a href="https://alison.com/tag/programming" class="btn">view page</a>
+                    </div>
+                </div>
+
+
+        </div>
+
+        
+    </section>
+
+    <!-- package section ends -->
+    <%- include("partials/footer") %>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!--javascript link-->
+    <script src="/js/script.js"></script>
+</body>
+</html>

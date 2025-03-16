@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title><%= title %></title>
+
+    <!--swiper cdn link-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    
+    <!--font awesome link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    
+    <!--css style link-->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+    <%- include("partials/header") %>
+   
+    <!-- services section starts-->
+
+    <section class="courses">
+        <h1 class="heading-title">FREE COURSES</h1>
+        <div class="box-container">
+
+            
+            <a href="/aero" class="boxes">
+                <div class="box">
+                    <img src="/images/services/icons8-aeroplane-48.png" alt="">
+                    <h3>Aerospace</h3>
+                </div>
+            </a>
+    
+
+            <a href="/auto" class="boxes">
+                <div class="box">
+                    <img src="/images/services/icons8-automotive-50.png" alt="">
+                    <h3>Automotive</h3>
+                </div>
+            </a>
+
+            <a href="/comp" class="boxes">
+                <div class="box">
+                    <img src="/images/services/icons8-computer-50.png" alt="">
+                    <h3>Computer Sci</h3>
+                </div>
+            </a>
+    
+            <a href="/electrical" class="boxes">
+                <div class="box">
+                    <img src="/images/services/icons8-electrical-64.png" alt="">
+                    <h3>Electrical</h3>
+                </div>
+            </a>
+
+            <a href="/electronics" class="boxes">
+                <div class="box">
+                    <img src="/images/services/icons8-electronics-50.png" alt="">
+                    <h3>Electronics</h3>
+                </div>
+            </a>
+    
+            
+            <a href="/mechanical" class="boxes">
+                <div class="box">
+                    <img src="/images/services/icons8-mechanical-50.png" alt="">
+                    <h3>Mechanical</h3>
+                </div>
+            </a>
+
+            <a href="/robotics" class="boxes">
+                <div class="box">
+                    <img src="/images/services/icons8-robotic-50.png" alt="">
+                    <h3>Robotics</h3>
+                </div>
+            </a>
+
+            <a href="/code" class="boxes">
+                <div class="box">
+                    <img src="/images/services/icons8-ai-64.png" alt="">
+                    <h3>Programming</h3>
+                </div>
+            </a>
+    
+        </div>
+    </section>
+    
+    <!-- services section ends-->
+    
+
+    <%- include("partials/footer") %>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html>

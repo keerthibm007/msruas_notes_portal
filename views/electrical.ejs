@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title><%= title %></title>
+
+    <!--swiper cdn link-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    
+    <!--font awesome link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    
+    <!--css style link-->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+   
+    <%- include("partials/header") %>
+    
+    <!-- package section starts -->
+
+    <section class="package">
+
+        <h1 class="heading-title">Free Courses</h1>
+
+        <div class="box-container">
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/alison.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Alison</h3>
+                        <p>Offers free electrical engineering courses on circuits, power systems, and electronics with certification options.</p>
+                        <a href="https://alison.com/tag/electrical-engineering" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/udemy.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Udemy</h3>
+                        <p>Provides free beginner-level electrical courses on circuit design, power distribution, and electronics.</p>
+                        <a href="https://www.udemy.com/topic/electrical-engineering/free/?srsltid=AfmBOoqZs71rYN8XLr8-30sG2P5YM9W9U9BQ9kNhDOjJJhXtdpjNYABr" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/classcentral.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Class central</h3>
+                        <p>Aggregates free electrical engineering courses from various universities and MOOC platforms.</p>
+                        <a href="https://www.classcentral.com/subject/electrical-engineering" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/studyforfe.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Studyforfe</h3>
+                        <p>Specializes in free preparation courses for the Fundamentals of Engineering (FE) Electrical exam.</p>
+                        <a href="https://www.studyforfe.com/blog/free-electrical-engineering-courses/" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/swayam.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>NPTEL</h3>
+                        <p>Offers free high-quality electrical engineering courses from IITs and IISc with video lectures.</p>
+                        <a href="https://archive.nptel.ac.in/noc/courses/108/" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/edx.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>EDX</h3>
+                        <p> Hosts electrical engineering courses from top institutions like MIT and Delft University with free auditing options.</p>
+                        <a href="https://www.edx.org/learn/electrical-engineering" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/bohema.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>University of west bohema</h3>
+                        <p>Provides free electrical and electronics engineering courses focused on European engineering standards.</p>
+                        <a href="https://www.fel.zcu.cz/en/Admission/Master-studies/rizeni_procesu_vedeni_podniku.html" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/khan.webp" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Khan academy</h3>
+                        <p>Offers free foundational courses on electricity, magnetism, and electrical circuits with interactive lessons.</p>
+                        <a href="https://www.khanacademy.org/science/electrical-engineering" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/mit_ocw.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>OCW MIT EDU</h3>
+                        <p>Provides free MIT course materials on electrical engineering, circuits, and power electronics.</p>
+                        <a href="https://ocw.mit.edu/search/?d=Electrical%20Engineering%20and%20Computer%20Science&s=department_course_numbers.sort_coursenum" class="btn">view page</a>
+                    </div>
+                </div>
+
+        </div>
+
+        
+    </section>
+
+    <!-- package section ends -->
+    <%- include("partials/footer") %>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!--javascript link-->
+    <script src="/js/script.js"></script>
+</body>
+</html>

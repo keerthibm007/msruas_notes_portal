@@ -5,30 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results - College Notes Portal</title>
     <link rel="stylesheet" href="/css/styles.css"> <!-- Link to your CSS file -->
-    
 </head>
 <body>
     <%- include("partials/header") %>
+
     <div class="main-container">
         <main class="upload">
-        <h1 class="searchheader">Search Results for:   <%= query %></h1>
+            <h1 class="searchheader">Search Results for: "<%= query %>"</h1>
 
-        <a href="/index" class="btns">Back to semester</a> 
+            <a href="/" class="btns">Back to Branches</a> 
 
-        <% if (results.length > 0) { %>
-            <ul>
-                <% results.forEach(result => { %>
-                    <li>
-                        <h4><%= result.sem %> - <%= result.branch %> - <%= result.subject %></h4>
-                        <a href="<%= result.link %>">View Notes</a>
-                    </li>
-                <% }) %>
-            </ul>
-        <% } else { %>
-            <p>No results found for "<%= query %>"</p>
-        <% } %>
+            <% if (results.length > 0) { %>
+                <ul class="search-results">
+                    <% results.forEach(result => { %>
+                        <li class="search-item">
+                            <h4>
+                                <strong>Branch:</strong> <%= result.branch.replace('_', ' ') %> |
+                                <strong>Semester:</strong> <%= result.semester.replace('_', ' ') %> |
+                                <strong>Subject:</strong> <%= result.subject %>
+                            </h4>
+                            
+                            <% if (result.link) { %>
+                                <a href="<%= result.link %>" class="view-notes-btn" target="_blank">View Notes</a>
+                            <% } else { %>
+                                <span class="no-link">No notes available</span>
+                            <% } %>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p class="no-results">No results found for "<%= query %>". Try searching for a different keyword.</p>
+            <% } %>
         </main>
     </div>
+
     <%- include("partials/footer") %>
 </body>
 </html>

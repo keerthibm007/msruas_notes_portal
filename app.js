@@ -33,10 +33,6 @@ app.get("/", (req, res) => {
   res.render("main", { title: "Home - College Notes" });
 });
 
-// Notes Page (renders index.ejs)
-app.get("/index", (req, res) => {
-  res.render("index", { title: "Notes - College Notes" });
-});
 
 // Upload Page
 app.get("/upload", (req, res) => {
@@ -49,483 +45,632 @@ app.get("/todo", (req, res) => {
 });
 
 // Courses Page
-app.get("/course", (req, res) => {
-  res.render("course", { title: "Courses - College Notes" });
+app.get("/courses", (req, res) => {
+  res.render("courses", { title: "Courses - College Notes" });
 });
 
-// Search Route
+//comp.ejs
+app.get('/comp', (req, res) => {
+  res.render('comp', { title: 'Computer Science' });
+});
+
+//code.ejs
+app.get('/code', (req, res) => {
+  res.render('code', { title: 'Programming' });
+});
+
+//aero.ejs
+app.get('/aero', (req, res) => {
+  res.render('aero', { title: 'Aerospace' });
+});
+
+//auto.ejs
+app.get('/auto', (req, res) => {
+  res.render('auto', { title: 'Automobile' });
+});
+
+//electrical.ejs
+app.get('/electrical', (req, res) => {
+  res.render('electrical', { title: 'Electrical' });
+});
+
+//electronics.ejs
+app.get('/electronics', (req, res) => {
+  res.render('electronics', { title: 'Electronics' });
+});
+
+//mech.ejs
+app.get('/mechanical', (req, res) => {
+  res.render('mechanical', { title: 'Mechanical' });
+});
+
+//robo.ejs
+app.get('/robotics', (req, res) => {
+  res.render('robotics', { title: 'Robotics' });
+});
+
 app.get("/search", (req, res) => {
-  const query = req.query.query.toLowerCase();
+  const query = req.query.query?.toLowerCase() || "";
   let results = [];
 
   // Loop through the data to find matches
-  for (let sem in data) {
-    for (let branch in data[sem]) {
-      for (let subject in data[sem][branch]) {
+  for (let branch in data) {
+    for (let semester in data[branch]) {
+      for (let subject in data[branch][semester]) {
         if (
-          subject.toLowerCase().includes(query) ||
-          branch.toLowerCase().includes(query)
+          branch.toLowerCase().includes(query) ||
+          semester.toLowerCase().includes(query) ||
+          subject.toLowerCase().includes(query)
         ) {
           results.push({
-            sem,
             branch,
+            semester,
             subject,
-            link: data[sem][branch][subject]
+            link: data[branch][semester][subject]
           });
         }
       }
     }
   }
-  
+
   res.render("search_results", { query, results, title: "Search Results" });
 });
 
+
+
 // Semester and subject data
 const data = {
+  Physics_Cycle: {
+    "1st_semester": {
+      "Engineering Mathematics-1": "https://drive.google.com/drive/folders/1rybBN-dL2BpvjroVkoOlHg4kiE8c2InT",
+      "Engineering Physics": "https://drive.google.com/drive/folders/1cz6Zg7KnSNm3IdphKj7AN2dkTTyO__Tl",
+      "Elements of Mechanical Engineering": "https://drive.google.com/drive/folders/1-U0VvMt5urFbsHWX76HtXJ0VzgY2TCyV",
+      "Elements of Electrical Engineering": "https://drive.google.com/drive/folders/1QToYECZ-wP8-KOyYMEvCzWGNhwuNtZ7x",
+      "Aerospace Engineering": "https://drive.google.com/drive/folders/1sxLlvmDGyjNU8hrKXtg4UmcQIJESCjno",
+      "Professional Communication": "https://drive.google.com/drive/folders/1inbhgCFT36Q13UAdTOu9YawuHQhkWtay"
+    },
+
+    "2nd_semester": {
+      "Engineering Mathematics-2": "https://drive.google.com/drive/folders/1bCWhDFvDIYbGKQbWe-55kqr51H02dIE9",
+      "Engineering Physics": "https://drive.google.com/drive/folders/1cz6Zg7KnSNm3IdphKj7AN2dkTTyO__Tl",
+      "Engineering Mechanics": "",
+      "Elements of Electronics Engineering": "",
+      "Engineering Drawing": "https://drive.google.com/drive/folders/1VTeBpIEuM6eegBXiZVbUQurBxK9J8dEM",
+      "Constitution of India": ""
+    }
+  },
+
+  Chemistry_Cycle: {
+
     "1st_sem": {
-      Physics: {
-        "Engineering Mathematics-1": "https://drive.google.com/drive/folders/1rybBN-dL2BpvjroVkoOlHg4kiE8c2InT",
-        "Engineering Physics": "https://drive.google.com/drive/folders/1cz6Zg7KnSNm3IdphKj7AN2dkTTyO__Tl",
-        "Elements of Mechanical Engineering": "https://drive.google.com/drive/folders/1-U0VvMt5urFbsHWX76HtXJ0VzgY2TCyV",
-        "Elements of Electrical Engineering": "https://drive.google.com/drive/folders/1QToYECZ-wP8-KOyYMEvCzWGNhwuNtZ7x",
-        "Aerospace Engineering":"https://drive.google.com/drive/folders/1sxLlvmDGyjNU8hrKXtg4UmcQIJESCjno",
-        "Professional Communication":"https://drive.google.com/drive/folders/1inbhgCFT36Q13UAdTOu9YawuHQhkWtay"
-      },
-      Chemistry: {
-        "Engineering Mathematics-1": "https://drive.google.com/drive/folders/1rybBN-dL2BpvjroVkoOlHg4kiE8c2InT",
-        "Engineering Chemistry": "https://drive.google.com/drive/folders/18YD7dwySWqK0TkMz9eFt2GiQva0l66uP",
-        "Elements of Computer Science and Engineering": "https://drive.google.com/drive/folders/1gVL7FqiOEHhd_GPYnkPJqpOhy3MRPgAe",
-        "Engineering Drawing": "https://drive.google.com/drive/folders/1VTeBpIEuM6eegBXiZVbUQurBxK9J8dEM",
-        "Kannada": "",
-      }
-    },
-  
-    "2nd_sem": {
-      Physics: {
-        "Engineering Mathematics-2": "https://drive.google.com/drive/folders/1bCWhDFvDIYbGKQbWe-55kqr51H02dIE9",
-        "Engineering Physics": "https://drive.google.com/drive/folders/1cz6Zg7KnSNm3IdphKj7AN2dkTTyO__Tl",
-        "Engineering Mechanics": "",
-        "Elements of Electronics Engineering": "",
-        "Engineering Drawing": "https://drive.google.com/drive/folders/1VTeBpIEuM6eegBXiZVbUQurBxK9J8dEM",
-        "Constitution of India": "",
-      },
-      Chemistry: {
-        "Engineering Mathematics-2": "https://drive.google.com/drive/folders/1bCWhDFvDIYbGKQbWe-55kqr51H02dIE9",
-        "Engineering Chemistry": "https://drive.google.com/drive/folders/18YD7dwySWqK0TkMz9eFt2GiQva0l66uP",
-        "Elements of Mechanical Engineering": "https://drive.google.com/drive/folders/1-U0VvMt5urFbsHWX76HtXJ0VzgY2TCyV",
-        "Elements of Electrical Engineering": "https://drive.google.com/drive/folders/1QToYECZ-wP8-KOyYMEvCzWGNhwuNtZ7x",
-        "Elements of Computer Science and Engineering": "https://drive.google.com/drive/folders/1gVL7FqiOEHhd_GPYnkPJqpOhy3MRPgAe",
-        "Professional Communication": "",
-      }
-    },
-  
-    "3rd_sem": {
-      Aerospace: {
-        "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
-        "Materials Science for Engineers": "",
-        "Elements of Aerospace Engineering": "",
-        "Thermodynamics for Engineers": "",
-        "Fluid Mechanics and Machines": "",
-        "Indian knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
-      },
-      AIML: {
-        "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
-        "Basics of Operating Systems": "https://drive.google.com/drive/folders/1N35qE_31Avq9_XUZ1QLCAU3vn6ZPSXJU",
-        "Mathematics for Machine Learning 1": "",
-        "Data Structures Foundation": "https://drive.google.com/drive/folders/11XGeuaaLTRGIP2yni_xa1NgA3c9TYoVO",
-        "Programming Paradigm":"https://drive.google.com/drive/folders/1IGXq9muqNL_dAt5vMmwvcpB9OugcN6DC",
-        "Logic Design": "https://drive.google.com/drive/folders/1MlLK8LfqutGG3awIeWn2lPzfyOKMHKB9",
-        "Principles of Artificial Intelligence": "",
-        "Indian knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
-       
-      },
-      Automotive: {
-        "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
-        "Materials Science for Engineers": "",
-        "Elements of Automotive Systems and Autonomous Vehicle": "",
-        "Thermodynamics for Engineers": "",
-        "Fluid Mechanics and Machines": "",
-        "Indian knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
-      },
-      Computer_science: {
-        "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
-        "Discrete Mathematics": "https://drive.google.com/drive/folders/1LpZ9UJbRfYifZzI2VUE9HgZYVdayfOpY",
-        "Data Structures Foundation": "https://drive.google.com/drive/folders/11XGeuaaLTRGIP2yni_xa1NgA3c9TYoVO",
-        "Logic Design": "https://drive.google.com/drive/folders/1MlLK8LfqutGG3awIeWn2lPzfyOKMHKB9",
-        "Programming Paradigm":"https://drive.google.com/drive/folders/1IGXq9muqNL_dAt5vMmwvcpB9OugcN6DC",
-        "Indian knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
-      },
-      Electrical: {
-        "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
-        "Signals and Systems": "",
-        "Network Analysis": "",
-        "Electrical Machines-1": "",
-        "Electronic Circuits": "",
-        "Digital Login Design":"",
-        "Indian knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
-      },
-      Electronics: {
-        "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
-        "Signals and Systems": "https://drive.google.com/drive/folders/1LF43iPbZcIP9N-ZmwP76oOAEk0b7fr2A",
-        "Network Analysis and Synthesis": "https://drive.google.com/drive/folders/1q_7LM3rfKfMROh8YZ5WxJ4VJUJVFEbNg",
-        "Electronic Circuits": "https://drive.google.com/drive/folders/1SnAbNDdM-PtNAEiIcQuNyXnIhwOhIXvJ",
-        "Very Large scale Integration":"https://drive.google.com/drive/folders/1YSQLFSdgVT5XbY_iFYGmvUI-rtXsT_Ai",
-        "Digital Login and design":"https://drive.google.com/drive/folders/1z3Uf8TwxrBFMQ-0fIcCvkpQcUIhwSOtH",
-        "Indian knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
-      },
-      
-      Information_science: {
-        "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
-        "Discrete Mathematics": "https://drive.google.com/drive/folders/1LpZ9UJbRfYifZzI2VUE9HgZYVdayfOpY",
-        "Data Structures Foundation": "https://drive.google.com/drive/folders/11XGeuaaLTRGIP2yni_xa1NgA3c9TYoVO",
-        "Logic Design": "https://drive.google.com/drive/folders/1MlLK8LfqutGG3awIeWn2lPzfyOKMHKB9",
-        "Programming Paradigm":"https://drive.google.com/drive/folders/1IGXq9muqNL_dAt5vMmwvcpB9OugcN6DC",
-        "Elements of Information Science": "",
-        "Indian knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
-      },
-      Mathematics_and_Computing: {
-        "Complex Analysis and Vector calculus": "",
-        "Probability and Statistics":"",
-        "Discrete Mathematics": "https://drive.google.com/drive/folders/1LpZ9UJbRfYifZzI2VUE9HgZYVdayfOpY",
-        "Data Structures Foundation": "https://drive.google.com/drive/folders/11XGeuaaLTRGIP2yni_xa1NgA3c9TYoVO",
-        "Programming Paradigm":"https://drive.google.com/drive/folders/1IGXq9muqNL_dAt5vMmwvcpB9OugcN6DC",
-        "Logic Design": "https://drive.google.com/drive/folders/1MlLK8LfqutGG3awIeWn2lPzfyOKMHKB9",
-        "Indian knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
-      },
-      Mechanical: {
-        "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
-        "Materials Science": "",
-        "Engineering Thermodynamics": "",
-        "Fluid Mechanics": "",
-        "Manufacturing Processes": "",
-        "Machine Drawing":"",
-        "Mechanical Dissection":"",
-        "Indian knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
-      },
-      Robotics: {
-        "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
-        "Strength of Materials":"",
-        "Measurements, Data Acquisition and Processing":"",
-        "Introduction to Robotics and Mechatronics": "",
-        "Electrical Machines Drives and Actuators": "",
-        "Machine Drawing": "",
-        "Indian knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
-      }
-    },
-  
-    "4th_sem": {
-      Aerospace: {
-        "Engineering Mathematics-4": "",
-        "Strength of Materials": "",
-        "Manufacturing Processes for Aerospace Systems": "",
-        "3D Modelling and Machine Drawing": "",
-        "Aerodynamics-1": "",
-        "Innovation and Entrepreneurship": ""
-      },
-      AIML: {
-        "Engineering Mathematics-4": "",
-        "Machine Learning-1": "",
-        "Mathematics for Machine Learning-2": "",
-        "Design and Analysis of Algorithms": "",
-        "Programming Paradigms": "",
-        "Environmental Studies": ""
-      },
-      Automotive: {
-        "Engineering Mathematics-4": "",
-        "Strength of Materials": "",
-        "Manufacturing Processes for Automotive Systems": "",
-        "3D Modelling and Machine Drawing": "",
-        "Automotive Electrical and Electronic Systems": "",
-        "Innovation and Entrepreneurship": ""
-      },
-      Civil: {
-        "Engineering Mathematics-4": "",
-        "Transportation Engineering-1": "",
-        "Structural Analysis-1": "",
-        "Hydraulics and Hydraulic Machines": "",
-        "Environmental Engineering": "",
-        "Buiding Planning and Computer Aided Drafting":"",
-        "Innovation and Entrepreneurship": ""
-      },
-      Computer_science: {
-        "Engineering Mathematics-4": "",
-        "Design and Analysis of Algorithms": "",
-        "Advanced Data Structures": "",
-        "Software Development Fundamentals": "",
-        "Programming Paradigms": "",
-        "Formal Languages and Automata Theory":"",
-        "Environmental Studies": ""
-      },
-      Electrical: {
-        "Engineering Mathematics-4": "",
-        "Linear Integrated circits": "",
-        "Electromagnetic Theory": "",
-        "Microprocessors and Microcontrollers": "",
-        "Measurement and Instrumentation": "",
-        "Electrical Machines-2":"",
-        "Innovation and Entrepreneurship": ""
-      },
-      Electronics: {
-        "Engineering Mathematics-4": "",
-        "Linear Integrated circits": "",
-        "Electromagnetic Theory": "",
-        "Microprocessors and Microcontrollers": "",
-        "Measurement and Instrumentation": "",
-        "Innovation and Entrepreneurship": ""
-      },
-      Information_science: {
-        "Engineering Mathematics-4": "",
-        "Design and Analysis of Algorithms": "",
-        "Database Management Systems": "",
-        "Computer Networks": "",
-        "Operating Systems": "",
-        "Environmental Studies": ""
-      },
-      
-      Mathematics_and_Computing: {
-        "Inferential Statistics":"",
-        "Integral Transforms":"",
-        "Linear Algebra":"",
-        "Design and Analysis of Algorithms":"",
-        "Formal Languages and Automata Theory":"",
-        "Programming Paradigms": "",
-        "Environmental Studies": ""
-      },
-
-      Mechanical: {
-        "Engineering Mathematics-4": "",
-        "Fluid Machines": "",
-        "Conventional Machining Processses": "",
-        "Strength of Materials": ""
-      },
-      Robotics: {
-        "Engineering Mathematics-4": "",
-        "Analog and Digital Electronics": "",
-        "Artificial Intelligence for Robotics": "",
-        "Digital Signal Processing": "",
-        "Fluid Power Systems for Robots": "",
-        "Mechanical Dissection": ""
-      }
+      "Engineering Mathematics-1": "https://drive.google.com/drive/folders/1rybBN-dL2BpvjroVkoOlHg4kiE8c2InT",
+      "Engineering Chemistry": "https://drive.google.com/drive/folders/18YD7dwySWqK0TkMz9eFt2GiQva0l66uP",
+      "Elements of Computer Science and Engineering": "https://drive.google.com/drive/folders/1gVL7FqiOEHhd_GPYnkPJqpOhy3MRPgAe",
+      "Engineering Drawing": "https://drive.google.com/drive/folders/1VTeBpIEuM6eegBXiZVbUQurBxK9J8dEM",
+      "Kannada": ""
     },
 
-    "5th_sem": {
-      Aerospace: {
-        "Aerospace Structures": "https://drive.google.com/drive/folders/1XtX1uadh5HjaXqUc6DINQv47WEBQ5aH4",
-        "Control System":"https://drive.google.com/drive/folders/1gKPQFS9PxzCL-cRrP0ZE11S5nulZ9-P8",
-        "Theory of Machines and Mechanisms": "https://drive.google.com/drive/folders/1sAhasyNvlZhX5A46k_ThJqCLu3yZg5n-",
-        "Aerodynamics-2": "https://drive.google.com/drive/folders/1SMmqz6b7oAwRZSlSPlMG153xqfUHENLO",
-        "Aerospace Propulsion-1": "https://drive.google.com/drive/folders/1_j9fPzj8yGYhn_R9MNM4pTTwZ7BNBU78",
-        "Artificial Intelligence and Machine Learning": "https://drive.google.com/drive/folders/1ldcg67a5gONT2GuWDW6Ri1fV0LUzShz-"
-      },
-      AIML: {
-        "Microprocessors and Architecture": "https://drive.google.com/drive/folders/1kDNSZrsJIDix1Mxzpk9i9npZm4wJwWgX",
-        "Machine Learning-2": "",
-        "Data Mining": "",
-        "Database Systems": "https://drive.google.com/drive/folders/15drLcOqVbfetwZUUitmUUpBiESi3m9oC",
-        "Computer Networks": "https://drive.google.com/drive/folders/16X9SlDY7brWVnxBohwvgXCuDycFWJXVb",
-      },
-      Automotive: {
-        "propulsion Systems for Electric and Hybrid vehicle": "",
-        "Theory of Machines and Mechanisms": "",
-        "Design of Automotive Components": "",
-        "Automotive Noise, Vibration and harshness": "",
-        "Artificial Intelligence and Machine Learning": ""
-      },
-      Computer_Science: {
-        "Data Mining": "",
-        "Probability and Statistics": "https://drive.google.com/drive/folders/1BrdmJMQCN_B88A-lr53mHLiCcCzW42mV",
-        "Database Systems": "https://drive.google.com/drive/folders/15drLcOqVbfetwZUUitmUUpBiESi3m9oC",
-        "Computer Networks": "https://drive.google.com/drive/folders/16X9SlDY7brWVnxBohwvgXCuDycFWJXVb",
-        "Operating Systems": "https://drive.google.com/drive/folders/1N35qE_31Avq9_XUZ1QLCAU3vn6ZPSXJU",
-        "Compilers":""
-      },
-      Electronics: {
-        "Transmission and Distribution": "",
-        "Digital Signal Processing": "",
-        "Electrical Machine Design": "",
-        "Control Systems": "",
-        "Engineering Economics": ""
-      },
-      Electrical_and_Electronics:{
-        "Digital Signal Processing": "https://drive.google.com/drive/folders/1_BDgrxVfDBbby6tn0HpbC3yFLmiUaCPt",
-        "Electrical Machine Design": "https://drive.google.com/drive/folders/1o3uD0OPoxYTnFC4ee1M4yBeZwf1aEgtL",
-        "Control Systems": "https://drive.google.com/drive/folders/1nJnvklUnWZa6LSct0AxVe27CQBdDyuga",
-        "Transmission and Distribution": "https://drive.google.com/drive/folders/1JI_MYB2yeurNyhny2QyH6d3gHcEHNO6o",
-        "High Voltage":"https://drive.google.com/drive/folders/1yqxrOkkoWGowPLMFXCY7obRfAk7PGwqH",
-        "Engineering Economics": "https://drive.google.com/drive/folders/1H9i5jZR8lswL0vm2XIloHxfS41fSWBsS"
-      },
-      Information_science: {
-        "Data Mining": "",
-        "Probability and Statistics": "https://drive.google.com/drive/folders/1BrdmJMQCN_B88A-lr53mHLiCcCzW42mV",
-        "Database Systems": "https://drive.google.com/drive/folders/15drLcOqVbfetwZUUitmUUpBiESi3m9oC",
-        "Computer Networks": "https://drive.google.com/drive/folders/16X9SlDY7brWVnxBohwvgXCuDycFWJXVb",
-        "Operating Systems": "https://drive.google.com/drive/folders/1N35qE_31Avq9_XUZ1QLCAU3vn6ZPSXJU",
-        "Microprocessors and Architecture": "https://drive.google.com/drive/folders/1kDNSZrsJIDix1Mxzpk9i9npZm4wJwWgX",
-        "Bio-informatics":""
-      },
-      Mathematics_and_Computing: {
-        "Optimization Techniques":"",
-        "Partial Differential Equations":"",
-        "Applications of Probability and statistics in Finance":"",
-        "Computer Networks":"https://drive.google.com/drive/folders/16X9SlDY7brWVnxBohwvgXCuDycFWJXVb",
-        "Microprocessors and Architecture":"https://drive.google.com/drive/folders/1kDNSZrsJIDix1Mxzpk9i9npZm4wJwWgX",
-        "Principles of Artificial Intelligence":""
-      },
-      Mechanical: {
-        "Applied Thermodynamics": "",
-        "Dynamics of Machinery": "",
-        "Design of Machine Elements-1": "",
-        "Automation in Manufacturing": "",
-      },
-      Robotics: {
-        "Designs of Machine Elements": "",
-        "Embedded Processor and Controllers": "",
-        "Computer Vision": "",
-        "Control System": ""
-      }
-    },
+    "2nd_semester": {
+      "Engineering Mathematics-2": "https://drive.google.com/drive/folders/1bCWhDFvDIYbGKQbWe-55kqr51H02dIE9",
+      "Engineering Chemistry": "https://drive.google.com/drive/folders/18YD7dwySWqK0TkMz9eFt2GiQva0l66uP",
+      "Elements of Mechanical Engineering": "https://drive.google.com/drive/folders/1-U0VvMt5urFbsHWX76HtXJ0VzgY2TCyV",
+      "Elements of Electrical Engineering": "https://drive.google.com/drive/folders/1QToYECZ-wP8-KOyYMEvCzWGNhwuNtZ7x",
+      "Elements of Computer Science and Engineering": "https://drive.google.com/drive/folders/1gVL7FqiOEHhd_GPYnkPJqpOhy3MRPgAe",
+      "Professional Communication": ""
+    }
+  },
 
-    "6th_sem": {
-      Aerospace: {
-        "Aerospace Propulsion-2": "",
-        "Finite Element Analysis": "",
-        "Aircraft Performance, Stability and control": "",
-        "Computational Fluid Dynamics": "",
-        "Engineering Economics": ""
-      },
-      AIML: {
-        "Graph Theory and Optimization": "",
-        "Computer Vision": "",
-        "Natural Language Processing": "",
-        "Deep Learning and Applications": "",
-        "Pattern Recognition": ""
-      },
-      Automotive: {
-        "Vehicle Body Engineering and Crashworthiness": "",
-        "Finite Element Analysis": "",
-        "Vehicle Dynamics and Handling": "",
-        "Computational Intelligence in Automotive Applications": "",
-        "Engineering Economics": ""
-      },
-      Civil: {
-        "Geotechnical Engineering-2": "",
-        "Design of Steel Element": "",
-        "Estimation-costing and Engineering Economics": "",
-        "DSM & Finite Element Analysis": "",
-        "Design & Drawing of Transportation & Irrigation Structures": "",
-        "Design & Drawing of Geotechnical & Environmental Structures": "",
-        "Design and Drawing of Steel Structures":""
-      },
-      Computer_science: {
-        "Information security and Protection": "",
-        "Web Architecture and Application Development": "",
-        "Principles of Artificial Intelligence": "",
-        "Computer Graphics": ""
-      },
-      Electrical_and_Electronics: {
-        "Design and Computer Aided of Electrical Machine": "",
-        "Switchgear and Protection": "",
-        "Power Electronics and Drives": "",
-        "Power System Analysis": ""
-      },
-      Electronics_and_Communication: {
-        "Information Theory": "",
-        "Digital Communication": "",
-        "Antenna and Propagation": "",
-        "Computer Networks": ""
-      },
-      Information_science: {
-        "Information security and Protection": "",
-        "Web Architecture and Application Development": "",
-        "Principles of Artificial Intelligence": "",
-        "Data Processing": ""
-      },
-      Mathematics_and_Computing: {
-        "Graph Theory and Optimization": "",
-        "Information security and Protection": "",
-        "Quantum Computing": "",
-        "Machine Learning-1": "",
-        "Parallel Algorithms for Scientific Computing": ""
-      },
-      Mechanical: {
-        "Heat and Mass Transfer": "",
-        "Design of Machine Elements-2": "",
-        "Industrial Engineering and Management": "",
-        "Engineering Economics and Cost Estimation for Mechanical": ""
-      },
-      robotics: {
-        "Robotic Programming and Simulation": "",
-        "Robotic System Design": "",
-        "Applied Control Systems": "",
-        "Robot Motion Planning": "",
-        "Digital Image Processing": "",
-        "Engineering Economics and Cost Estimation": ""
-      }
+  Aerospace: {
+    "3rd_semester": {
+      "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
+      "Materials Science for Engineers": "",
+      "Elements of Aerospace Engineering": "",
+      "Thermodynamics for Engineers": "",
+      "Fluid Mechanics and Machines": "",
+      "Indian Knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
     },
-    
+    "4th_semester": {
+      "Engineering Mathematics-4": "",
+      "Strength of Materials": "",
+      "Manufacturing Processes for Aerospace Systems": "",
+      "3D Modelling and Machine Drawing": "",
+      "Aerodynamics-1": "",
+      "Innovation and Entrepreneurship": ""
+    },
+    "5th_semester": {
+      "Aerospace Structures": "https://drive.google.com/drive/folders/1XtX1uadh5HjaXqUc6DINQv47WEBQ5aH4",        "Control System":"https://drive.google.com/drive/folders/1gKPQFS9PxzCL-cRrP0ZE11S5nulZ9-P8",
+      "Theory of Machines and Mechanisms": "https://drive.google.com/drive/folders/1sAhasyNvlZhX5A46k_ThJqCLu3yZg5n-",
+      "Aerodynamics-2": "https://drive.google.com/drive/folders/1SMmqz6b7oAwRZSlSPlMG153xqfUHENLO",
+      "Aerospace Propulsion-1": "https://drive.google.com/drive/folders/1_j9fPzj8yGYhn_R9MNM4pTTwZ7BNBU78",
+      "Artificial Intelligence and Machine Learning": "https://drive.google.com/drive/folders/1ldcg67a5gONT2GuWDW6Ri1fV0LUzShz-"
+    },
+    "6th_semester": {
+      "Aerospace Propulsion-2": "",
+      "Finite Element Analysis": "",
+      "Aircraft Performance, Stability and control": "",
+      "Computational Fluid Dynamics": "",
+      "Engineering Economics": ""
+    },
+    "7th_semester": {
+      "Advanced Aerodynamics": "",
+      "Rocket Propulsion": "",
+      "Aerospace System Design": "",
+      "Elective II": "",
+      "Project Work I": ""
+    },
+    "8th_semester": {
+      "Aircraft Maintenance Engineering": "",
+      "Aerospace Manufacturing": "",
+      "Elective III": "",
+      "Project Work II": "",
+      "Professional Ethics in Engineering": ""
+    }
+  },
+
+  
+  AIML: {
+    "3rd_semester": {
+      "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
+      "Basics of Operating Systems": "https://drive.google.com/drive/folders/1N35qE_31Avq9_XUZ1QLCAU3vn6ZPSXJU",
+      "Mathematics for Machine Learning 1": "",
+      "Data Structures Foundation": "https://drive.google.com/drive/folders/11XGeuaaLTRGIP2yni_xa1NgA3c9TYoVO",
+      "Programming Paradigm": "https://drive.google.com/drive/folders/1IGXq9muqNL_dAt5vMmwvcpB9OugcN6DC",
+      "Logic Design": "https://drive.google.com/drive/folders/1MlLK8LfqutGG3awIeWn2lPzfyOKMHKB9",
+      "Principles of Artificial Intelligence": "",
+      "Indian Knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
+    },
+    "4th_semester": {
+      "Engineering Mathematics-4": "",
+      "Machine Learning-1": "",
+      "Mathematics for Machine Learning-2": "",
+      "Design and Analysis of Algorithms": "",
+      "Programming Paradigms": "",
+      "Environmental Studies": ""
+    },
+    "5th_semester": {
+      "Microprocessors and Architecture": "https://drive.google.com/drive/folders/1kDNSZrsJIDix1Mxzpk9i9npZm4wJwWgX",
+      "Machine Learning-2": "",
+      "Data Mining": "",
+      "Database Systems": "https://drive.google.com/drive/folders/15drLcOqVbfetwZUUitmUUpBiESi3m9oC",
+      "Computer Networks": "https://drive.google.com/drive/folders/16X9SlDY7brWVnxBohwvgXCuDycFWJXVb"
+    },
+    "6th_semester": {
+      "Graph Theory and Optimization": "",
+      "Computer Vision": "",
+      "Natural Language Processing": "",
+      "Deep Learning and Applications": "",
+      "Pattern Recognition": ""
+    },
+    "7th_semester": {
+      "Advanced Machine Learning": "",
+      "AI Ethics and Society": "",
+      "Reinforcement Learning": "",
+      "Elective II": "",
+      "Project Work I": ""
+    },
+    "8th_semester": {
+      "AI in Industry": "",
+      "Capstone Project": "",
+      "Elective III": "",
+      "Project Work II": "",
+      "Professional Ethics in Engineering": ""
+    }
+  },
+
+  Automotive: {
+    "3rd_semester": {
+      "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
+      "Materials Science for Engineers": "",
+      "Elements of Automotive Systems and Autonomous Vehicle": "",
+      "Thermodynamics for Engineers": "",
+      "Fluid Mechanics and Machines": "",
+      "Indian Knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
+    },
+    "4th_semester": {
+      "Engineering Mathematics-4": "",
+      "Strength of Materials": "",
+      "Manufacturing Processes for Automotive Systems": "",
+      "3D Modelling and Machine Drawing": "",
+      "Automotive Electrical and Electronic Systems": "",
+      "Innovation and Entrepreneurship": ""
+    },
+    "5th_semester": {
+      "Propulsion Systems for Electric and Hybrid Vehicles": "",
+      "Theory of Machines and Mechanisms": "",
+      "Design of Automotive Components": "",
+      "Automotive Noise, Vibration and Harshness": "",
+      "Artificial Intelligence and Machine Learning": ""
+    },
+    "6th_semester": {
+      "Vehicle Body Engineering and Crashworthiness": "",
+      "Finite Element Analysis": "",
+      "Vehicle Dynamics and Handling": "",
+      "Computational Intelligence in Automotive Applications": "",
+      "Engineering Economics": ""
+    },
+    "7th_semester": {
+      "Advanced Automotive Systems": "",
+      "Automotive Control Systems": "",
+      "Elective II": "",
+      "Project Work I": ""
+    },
+    "8th_semester": {
+      "Automotive Industry Practices": "",
+      "Capstone Project": "",
+      "Elective III": "",
+      "Project Work II": "",
+      "Professional Ethics in Engineering": ""
+    }
+  },
+  
+  Computer_Science: {
+    "3rd_semester": {
+      "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
+      "Discrete Mathematics": "https://drive.google.com/drive/folders/1LpZ9UJbRfYifZzI2VUE9HgZYVdayfOpY",
+      "Data Structures Foundation": "https://drive.google.com/drive/folders/11XGeuaaLTRGIP2yni_xa1NgA3c9TYoVO",
+      "Logic Design": "https://drive.google.com/drive/folders/1MlLK8LfqutGG3awIeWn2lPzfyOKMHKB9",
+      "Programming Paradigm": "https://drive.google.com/drive/folders/1IGXq9muqNL_dAt5vMmwvcpB9OugcN6DC",
+      "Indian Knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
+    },
+    "4th_semester": {
+      "Engineering Mathematics-4": "",
+      "Design and Analysis of Algorithms": "",
+      "Advanced Data Structures": "",
+      "Software Development Fundamentals": "",
+      "Programming Paradigms": "",
+      "Formal Languages and Automata Theory": "",
+      "Environmental Studies": ""
+    },
+    "5th_semester": {
+      "Data Mining": "",
+      "Probability and Statistics": "https://drive.google.com/drive/folders/1BrdmJMQCN_B88A-lr53mHLiCcCzW42mV",
+      "Database Systems": "https://drive.google.com/drive/folders/15drLcOqVbfetwZUUitmUUpBiESi3m9oC",
+      "Computer Networks": "https://drive.google.com/drive/folders/16X9SlDY7brWVnxBohwvgXCuDycFWJXVb",
+      "Operating Systems": "https://drive.google.com/drive/folders/1N35qE_31Avq9_XUZ1QLCAU3vn6ZPSXJU",
+      "Compilers": ""
+    },
+    "6th_semester": {
+      "Information Security and Protection": "",
+      "Web Architecture and Application Development": "",
+      "Principles of Artificial Intelligence": "",
+      "Computer Graphics": ""
+    },
+    "7th_semester": {
+      "Software Engineering": "",
+      "Cloud Computing": "",
+      "Elective II": "",
+      "Project Work I": ""
+    },
+    "8th_semester": {
+      "Capstone Project": "",
+      "Elective III": "",
+      "Project Work II": "",
+      "Professional Ethics in Engineering": ""
+    }
+  },
+
+
+
+  Electrical: {
+    "3rd_semester": {
+      "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
+      "Signals and Systems": "",
+      "Network Analysis": "",
+      "Electrical Machines-1": "",
+      "Electronic Circuits": "",
+      "Digital Logic Design": "",
+      "Indian Knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
+    },
+    "4th_semester": {
+      "Engineering Mathematics-4": "",
+      "Linear Integrated Circuits": "",
+      "Electromagnetic Theory": "",
+      "Microprocessors and Microcontrollers": "",
+      "Measurement and Instrumentation": "",
+      "Electrical Machines-2": "",
+      "Innovation and Entrepreneurship": ""
+    },
+    "5th_semester": {
+      "Digital Signal Processing": "",
+      "Electrical Machine Design": "",
+      "Control Systems": "",
+      "Transmission and Distribution": "",
+      "Engineering Economics": ""
+    },
+    "6th_semester": {
+      "Power Electronics and Drives": "",
+      "Power System Analysis": "",
+      "Switchgear and Protection": "",
+      "High Voltage Engineering": "",
+      "Renewable Energy Systems": ""
+    },
+    "7th_semester": {
+      "Advanced Control Systems": "",
+      "Smart Grid Technology": "",
+      "Elective II": "",
+      "Project Work I": ""
+    },
+    "8th_semester": {
+      "Capstone Project": "",
+      "Elective III": "",
+      "Project Work II": "",
+      "Professional Ethics in Engineering": ""
+    }
+  },
+  
+  Electronics: {
+    "3rd_semester": {
+      "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
+      "Signals and Systems": "https://drive.google.com/drive/folders/1LF43iPbZcIP9N-ZmwP76oOAEk0b7fr2A",
+      "Network Analysis and Synthesis": "https://drive.google.com/drive/folders/1q_7LM3rfKfMROh8YZ5WxJ4VJUJVFEbNg",
+      "Electronic Circuits": "https://drive.google.com/drive/folders/1SnAbNDdM-PtNAEiIcQuNyXnIhwOhIXvJ",
+      "Very Large scale Integration":"https://drive.google.com/drive/folders/1YSQLFSdgVT5XbY_iFYGmvUI-rtXsT_Ai",
+      "Digital Login and design":"https://drive.google.com/drive/folders/1z3Uf8TwxrBFMQ-0fIcCvkpQcUIhwSOtH",
+      "Indian knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
+    },
+    "4th_semester": {
+      "Engineering Mathematics-4": "",
+      "Linear Integrated Circuits": "",
+      "Electromagnetic Fields": "",
+      "Signal Processing": "",
+      "Control Systems": "",
+      "Embedded Systems": ""
+    },
+    "5th_semester": {
+      "Digital Signal Processing": "",
+      "VLSI Design": "",
+      "Microcontrollers": "",
+      "Communication Networks": "",
+      "Engineering Economics": ""
+    },
+    "6th_semester": {
+      "RF and Microwave Engineering": "",
+      "Optoelectronics": "",
+      "Power Electronics": "",
+      "Embedded System Design": "",
+      "Renewable Energy Technologies": ""
+    },
+    "7th_semester": {
+      "Advanced Communication Systems": "",
+      "Elective II": "",
+      "Project Work I": ""
+    },
+    "8th_semester": {
+      "Capstone Project": "",
+      "Elective III": "",
+      "Project Work II": "",
+      "Professional Ethics in Engineering": ""
+    }
+  },
+
+  Information_science: {
+    "3rd_semester": {
+      "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
+      "Discrete Mathematics": "https://drive.google.com/drive/folders/1LpZ9UJbRfYifZzI2VUE9HgZYVdayfOpY",
+      "Data Structures Foundation": "https://drive.google.com/drive/folders/11XGeuaaLTRGIP2yni_xa1NgA3c9TYoVO",
+      "Logic Design": "https://drive.google.com/drive/folders/1MlLK8LfqutGG3awIeWn2lPzfyOKMHKB9",
+      "Programming Paradigm": "https://drive.google.com/drive/folders/1IGXq9muqNL_dAt5vMmwvcpB9OugcN6DC",
+      "Elements of Information Science": "",
+      "Indian Knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
+    },
+    "4th_semester": {
+      "Engineering Mathematics-4": "",
+      "Design and Analysis of Algorithms": "",
+      "Database Management Systems": "",
+      "Computer Networks": "",
+      "Operating Systems": "",
+      "Environmental Studies": ""
+    },
+    "5th_semester": {
+      "Data Mining": "",
+      "Probability and Statistics": "https://drive.google.com/drive/folders/1BrdmJMQCN_B88A-lr53mHLiCcCzW42mV",
+      "Database Systems": "https://drive.google.com/drive/folders/15drLcOqVbfetwZUUitmUUpBiESi3m9oC",
+      "Computer Networks": "https://drive.google.com/drive/folders/16X9SlDY7brWVnxBohwvgXCuDycFWJXVb",
+      "Operating Systems": "https://drive.google.com/drive/folders/1N35qE_31Avq9_XUZ1QLCAU3vn6ZPSXJU",
+      "Microprocessors and Architecture": "https://drive.google.com/drive/folders/1kDNSZrsJIDix1Mxzpk9i9npZm4wJwWgX",
+      "Bio-informatics": ""
+    },
+    "6th_semester": {
+      "Information Security and Protection": "",
+      "Web Architecture and Application Development": "",
+      "Principles of Artificial Intelligence": "",
+      "Data Processing": ""
+    },
+    "7th_semester": {
+      "Software Engineering": "",
+      "Cloud Computing": "",
+      "Elective II": "",
+      "Project Work I": ""
+    },
+    "8th_semester": {
+      "Capstone Project": "",
+      "Elective III": "",
+      "Project Work II": "",
+      "Professional Ethics in Engineering": ""
+    }
+  },
+  Mathematics_and_Computing: {
+    "3rd_semester": {
+      "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
+      "Probability and Statistics": "",
+      "Discrete Mathematics": "https://drive.google.com/drive/folders/1LpZ9UJbRfYifZzI2VUE9HgZYVdayfOpY",
+      "Data Structures Foundation": "https://drive.google.com/drive/folders/11XGeuaaLTRGIP2yni_xa1NgA3c9TYoVO",
+      "Programming Paradigm": "https://drive.google.com/drive/folders/1IGXq9muqNL_dAt5vMmwvcpB9OugcN6DC",
+      "Logic Design": "https://drive.google.com/drive/folders/1MlLK8LfqutGG3awIeWn2lPzfyOKMHKB9",
+      "Indian Knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
+    },
+    "4th_semester": {
+      "Engineering Mathematics-4": "",
+      "Inferential Statistics": "",
+      "Integral Transforms": "",
+      "Linear Algebra": "",
+      "Design and Analysis of Algorithms": "",
+      "Formal Languages and Automata Theory": "",
+      "Programming Paradigms": "",
+      "Environmental Studies": ""
+    },
+    "5th_semester": {
+      "Optimization Techniques": "",
+      "Partial Differential Equations": "",
+      "Applications of Probability and Statistics in Finance": "",
+      "Computer Networks": "https://drive.google.com/drive/folders/16X9SlDY7brWVnxBohwvgXCuDycFWJXVb",
+      "Microprocessors and Architecture": "https://drive.google.com/drive/folders/1kDNSZrsJIDix1Mxzpk9i9npZm4wJwWgX",
+      "Principles of Artificial Intelligence": ""
+    },
+    "6th_semester": {
+      "Graph Theory and Optimization": "",
+      "Information Security and Protection": "",
+      "Quantum Computing": "",
+      "Machine Learning-1": "",
+      "Parallel Algorithms for Scientific Computing": ""
+    },
+    "7th_semester": {
+      "Capstone Project": "",
+      "Elective II": "",
+      "Internship": ""
+    },
+    "8th_semester": {
+      "Professional Ethics in Computing": "",
+      "Emerging Technologies in Mathematics": "",
+      "Project Work": ""
+    }
+  },
+
+Mechanical: {
+  "3rd_semester": {
+    "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
+    "Materials Science": "",
+    "Engineering Thermodynamics": "",
+    "Fluid Mechanics": "",
+    "Manufacturing Processes": "",
+    "Machine Drawing": "",
+    "Mechanical Dissection": "",
+    "Indian Knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
+  },
+  "4th_semester": {
+    "Engineering Mathematics-4": "",
+    "Fluid Machines": "",
+    "Conventional Machining Processes": "",
+    "Strength of Materials": "",
+    "Thermal Engineering": "",
+    "Machine Design": ""
+  },
+  "5th_semester": {
+    "Applied Thermodynamics": "",
+    "Dynamics of Machinery": "",
+    "Design of Machine Elements-1": "",
+    "Automation in Manufacturing": "",
+    "Elective I": ""
+  },
+  "6th_semester": {
+    "Heat and Mass Transfer": "",
+    "Design of Machine Elements-2": "",
+    "Industrial Engineering and Management": "",
+    "Engineering Economics and Cost Estimation for Mechanical": "",
+    "Elective II": ""
+  },
+  "7th_semester": {
+    "Advanced Manufacturing Processes": "",
+    "Robotics and Automation": "",
+    "Elective III": "",
+    "Project Work I": ""
+  },
+  "8th_semester": {
+    "Capstone Project": "",
+    "Professional Ethics in Engineering": "",
+    "Project Work II": ""
+  }
+},
+Robotics: {
+  "3rd_semester": {
+    "Engineering Mathematics-3": "https://drive.google.com/drive/folders/1-UyJ-iRxfvqm_KXL2ciw0IHOjgsYZ6X_",
+    "Strength of Materials": "",
+    "Measurements, Data Acquisition and Processing": "",
+    "Introduction to Robotics and Mechatronics": "",
+    "Electrical Machines, Drives and Actuators": "",
+    "Machine Drawing": "",
+    "Indian Knowledge System": "https://drive.google.com/drive/folders/1jTv-yYKgUeZ2Yfr7uQBUoolv6FKEoyXR"
+  },
+  "4th_semester": {
+    "Engineering Mathematics-4": "",
+    "Analog and Digital Electronics": "",
+    "Artificial Intelligence for Robotics": "",
+    "Digital Signal Processing": "",
+    "Fluid Power Systems for Robots": "",
+    "Mechanical Dissection": ""
+  },
+  "5th_semester": {
+    "Robotic Kinematics": "",
+    "Robotic Dynamics": "",
+    "Control Systems for Robotics": "",
+    "Elective I": ""
+  },
+  "6th_semester": {
+    "Robot Programming and Simulation": "",
+    "Robotic System Design": "",
+    "Applied Control Systems": "",
+    "Robot Motion Planning": "",
+    "Digital Image Processing": "",
+    "Engineering Economics and Cost Estimation": ""
+  },
+  "7th_semester": {
+    "Advanced Robotics": "",
+    "Elective II": "",
+    "Project Work I": ""
+  },
+  "8th_semester": {
+    "Capstone Project": "",
+    "Elective III": "",
+    "Project Work II": "",
+    "Professional Ethics in Engineering": ""
+  }
+},    
   
 };
 
-// Semester Route (Lists branches for a semester)
-app.get("/semester/:sem", (req, res) => {
-  const sem = req.params.sem;
-  const branches = data[sem] ? Object.keys(data[sem]) : null;
-  if (!branches) return res.status(404).send("Semester not found");
-
-  res.render("semester", {
-    sem,
-    branches,
-    title: `Semester ${sem.replace('_', ' ')} Notes`
-  });
+// 📌 **Step 1: Show available branches (semester.ejs)**
+app.get("/semester", (req, res) => {
+  const branches = Object.keys(data); // Extract branches dynamically
+  res.render("semester", { title: "Select Your Branch", branches });
 });
 
-// Branch Route (Lists subjects for a branch in a semester)
-app.get("/semester/:sem/:branch", (req, res) => {
-  const sem = req.params.sem;
+// 📌 **Step 2: Show available semesters for a selected branch (index.ejs)**
+app.get("/branch/:branch", (req, res) => {
   const branch = req.params.branch;
-  const subjects = data[sem] && data[sem][branch];
-  if (!subjects) return res.status(404).send("Branch not found");
+  const semesters = data[branch] ? Object.keys(data[branch]) : null;
 
-  res.render("branch", {
-    sem,
-    branch,
-    subjects,
-    title: `${branch} - Semester ${sem.replace('_', ' ')} Notes`
+  if (!semesters) return res.status(404).send("Branch not found");
+
+  res.render("index", { title: `Select Semester - ${branch}`, branch, semesters });
+});
+
+// 📌 **Step 3: Show available subjects for the selected semester & branch (subjects.ejs)**
+app.get("/semester/:branch/:sem", (req, res) => {
+  const { branch, sem } = req.params;
+  const subjects = data[branch] && data[branch][sem] ? Object.keys(data[branch][sem]) : null;
+
+  if (!subjects) return res.status(404).send("Semester not found");
+
+  res.render("subjects", { 
+    title: `Subjects - ${sem.replace('_', ' ')} - ${branch}`, 
+    branch, 
+    sem, 
+    subjects 
   });
 });
 
-// Alternative Index Route for a semester (if needed)
-app.get("/index/:index", (req, res) => {
-  const sem = req.params.index;
-  const branches = data[sem] ? Object.keys(data[sem]) : null;
-  if (!branches) return res.status(404).send("Semester not found");
+// 📌 **Step 4: Redirect to the subject notes link**
+app.get("/subject/:branch/:sem/:subject", (req, res) => {
+  const { branch, sem, subject } = req.params;
+  const subjectLink = data[branch]?.[sem]?.[subject];
 
-  res.render("semester", {
-    sem,
-    branches,
-    title: `Semester ${sem.replace('_', ' ')} Notes`
-  });
-});
-
-// Subject Route (Redirects to the subject link)
-app.get("/semester/:sem/:branch/:subject", (req, res) => {
-  const { sem, branch, subject } = req.params;
-  const subjectLink = data[sem] && data[sem][branch] && data[sem][branch][subject];
   if (!subjectLink) return res.status(404).send("Subject notes not found");
 
   res.redirect(subjectLink);
 });
 
-// Additional subjects route (if applicable)
-app.get('/subjects/:semester/:cycle', (req, res) => {
-  const { semester, cycle } = req.params;
-  const subjects = data[semester]?.[cycle];
-  if (subjects) {
-    res.render('subjects', { subjects, title: "Subjects" });
-  } else {
-    res.status(404).send('Subjects not found');
-  }
-});
+
+
 
 // ------------------------
 // Multer Configuration for Uploads
@@ -604,4 +749,3 @@ app.post("/upload", upload.single("note"), (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-  

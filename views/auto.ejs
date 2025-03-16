@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title><%= title %></title>
+
+    <!--swiper cdn link-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    
+    <!--font awesome link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    
+    <!--css style link-->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+   
+    <%- include("partials/header") %>
+    
+    <!-- package section starts -->
+
+    <section class="package">
+
+        <h1 class="heading-title">Free Courses</h1>
+
+        <div class="box-container">
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/alison.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Alison</h3>
+                        <p> Offers free courses on automotive mechanics, hybrid vehicles, and car maintenance with certification options.</p>
+                        <a href="https://alison.com/tag/automotive-engineering" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/classcentral.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Class central</h3>
+                        <p> Aggregates free automotive engineering courses from various universities and MOOC platforms.</p>
+                        <a href="https://www.classcentral.com/subject/auto-tech" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/carrers360.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Careers360</h3>
+                        <p>Lists and provides access to free automotive courses from universities and online platforms.</p>
+                        <a href="https://www.careers360.com/courses-certifications/free-automobile-engineering-courses" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/denso.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Denso Technic</h3>
+                        <p>Provides free online training on automotive technology, vehicle components, and diagnostics.</p>
+                        <a href="https://www.denso-technic.com/" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/swayam.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>NPTEL</h3>
+                        <p> Offers free automotive and mechanical engineering courses from IITs and IISc with high-quality video lectures.</p>
+                        <a href="https://onlinecourses.nptel.ac.in/noc21_de02/preview" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/edx.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>EDX</h3>
+                        <p>Hosts automotive engineering courses from top institutions like TU Delft and Chalmers University with free auditing options.</p>
+                        <a href="https://www.edx.org/learn/engineering/chalmers-university-of-technology-model-based-automotive-systems-engineering" class="btn">view page</a>
+                    </div>
+                </div>
+
+        </div>
+
+        
+    </section>
+
+    <!-- package section ends -->
+    <%- include("partials/footer") %>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!--javascript link-->
+    <script src="/js/script.js"></script>
+</body>
+</html>

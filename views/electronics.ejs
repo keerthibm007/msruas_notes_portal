@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title><%= title %></title>
+
+    <!--swiper cdn link-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    
+    <!--font awesome link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    
+    <!--css style link-->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+   
+    <%- include("partials/header") %>
+    
+    <!-- package section starts -->
+
+    <section class="package">
+
+        <h1 class="heading-title">Free Courses</h1>
+
+        <div class="box-container">
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/open.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>The Open University</h3>
+                        <p>Offers free online courses in electronics, circuits, and embedded systems.</p>
+                        <a href="https://www.open.edu/openlearn/science-maths-technology/an-introduction-electronics/content-section-0" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/swayam.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>NPTEL</h3>
+                        <p>Provides free high-quality electronics courses from IITs and IISc with video lectures.</p>
+                        <a href="https://onlinecourses.nptel.ac.in/noc21_ee55/preview" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/classcentral.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Class central</h3>
+                        <p> Aggregates free electronics engineering courses from various universities and MOOC platforms.</p>
+                        <a href="https://www.classcentral.com/tag/electronics" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/alison.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Alison</h3>
+                        <p> Features free courses on electronics, circuit design, and microcontrollers with certification options.</p>
+                        <a href="https://alison.com/tag/electronics" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/edx.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>EDX</h3>
+                        <p>Hosts free electronics courses from top institutions like MIT, Harvard, and Delft University with auditing options.</p>
+                        <a href="https://www.edx.org/learn/electronics" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/coursesity.avif" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Coursesity</h3>
+                        <p>Curates free electronics and embedded systems courses from different online platforms.</p>
+                        <a href="https://coursesity.com/free-tutorials-learn/electronics" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/greatlearning.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Great Learning</h3>
+                        <p>Offers free beginner-friendly courses on electronics, IoT, and embedded systems.</p>
+                        <a href="https://www.mygreatlearning.com/academy/learn-for-free/courses/introduction-to-power-electronics" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/forum.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>MIT (Forum Arduino)</h3>
+                        <p>Provides free resources and discussions on Arduino and embedded electronics projects.</p>
+                        <a href="https://forum.arduino.cc/t/free-online-electronics-course-from-mit/89967" class="btn">view page</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <img src="/images/mit_ocw.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>MIT</h3>
+                        <p>Offers free MIT course materials on electronics, circuits, and signal processing.</p>
+                        <a href="https://ocw.mit.edu/search/?q=electronics" class="btn">view page</a>
+                    </div>
+                </div>
+
+        </div>
+
+        
+    </section>
+
+    <!-- package section ends -->
+    <%- include("partials/footer") %>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!--javascript link-->
+    <script src="/js/script.js"></script>
+</body>
+</html>
